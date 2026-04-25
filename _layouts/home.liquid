@@ -6,9 +6,16 @@
     <div
         class="uk-container uk-container-xsmall uk-padding-remove-left uk-padding-remove-right">
         <div class="uk-cover-container uk-height-medium">
-            <img src="{{ '/assets/images/lettuce-cropped-web.jpeg' | relative_url }}"
-                alt="Beautiful Young Edgie's Veggies Lettuce covered in rain droplets"
-                uk-cover>
+            <picture>
+                <source type="image/webp"
+                    srcset="{{ '/assets/images/lettuce-cropped-web-750.webp' | relative_url }} 750w,
+                            {{ '/assets/images/lettuce-cropped-web-1500.webp' | relative_url }} 1500w"
+                    sizes="(max-width: 750px) 100vw, 750px">
+                <img src="{{ '/assets/images/lettuce-cropped-web.jpeg' | relative_url }}"
+                    alt="Beautiful Young Edgie's Veggies Lettuce covered in rain droplets"
+                    fetchpriority="high"
+                    uk-cover>
+            </picture>
         </div>
     </div>
 
@@ -71,8 +78,7 @@
                     </form>
                 </div>
             </div>
-            <script type="text/javascript"
-                src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
+            <script async src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
 
         </div>
     </div>
@@ -83,11 +89,17 @@
             tabindex="-1" uk-slideshow="autoplay: true; ratio: 3:2">
             <ul class="uk-slideshow-items">
                 {% for image in site.static_files %}
-                {% if image.path contains 'images/home-slides/' %}
+                {% if image.path contains 'images/home-slides/' and image.extname == '.jpeg' %}
                 {% increment slider_counter %}
                 <li>
-                    <img src="{{ image.path | relative_url }}" alt="image"
-                        uk-cover>
+                    <picture>
+                        <source type="image/webp"
+                            srcset="{{ image.path | replace: '.jpeg', '-750.webp' | relative_url }} 750w,
+                                    {{ image.path | replace: '.jpeg', '-1500.webp' | relative_url }} 1500w"
+                            sizes="(max-width: 750px) 100vw, 750px">
+                        <img src="{{ image.path | relative_url }}" alt=""
+                            uk-cover loading="lazy">
+                    </picture>
                 </li>
                 {% endif %}
                 {% endfor %}

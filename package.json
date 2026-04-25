@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "Marketing site for a small-scale market garden in St. Paul, MN.",
   "scripts": {
-    "copy-assets": "cp node_modules/uikit/dist/js/uikit.min.js assets/js/ && cp node_modules/uikit/dist/js/uikit-icons.min.js assets/js/"
+    "process-images": "node scripts/process-images.js",
+    "copy-assets": "cp node_modules/uikit/dist/js/uikit-core.min.js assets/js/ && cp node_modules/uikit/dist/js/components/slideshow.min.js assets/js/uikit-slideshow.min.js && cp node_modules/uikit/dist/js/uikit-icons.min.js assets/js/",
+    "purgecss": "purgecss --config purgecss.config.js"
   },
   "dependencies": {
+    "purgecss": "^8.0.0",
+    "sharp": "^0.34.5",
     "uikit": "3.16.14"
   }
 }

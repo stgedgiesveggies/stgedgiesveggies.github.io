@@ -26,6 +26,7 @@ jobs:
           cache: npm
 
       - run: npm install
+      - run: npm run process-images
       - run: npm run copy-assets
 
       - uses: ruby/setup-ruby@v1
@@ -36,6 +37,7 @@ jobs:
       - uses: actions/configure-pages@v5
 
       - run: bundle exec jekyll build
+      - run: npm run purgecss
 
       - uses: actions/upload-pages-artifact@v3
         with:
