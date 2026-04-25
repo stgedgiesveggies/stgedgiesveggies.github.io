@@ -1,9 +1,11 @@
 ---
 ---
+@use 'sass:color';
+
 // 1. Your custom variables and variable overwrites.
 $global-background: #fffbeb;
 $global-link-color: #cf0089;
-$global-link-hover-color: darken($global-link-color, 5%);
+$global-link-hover-color: color.adjust($global-link-color, $lightness: -5%);
 $global-primary-background: $global-link-color;
 $global-secondary-background: #00af95;
 
