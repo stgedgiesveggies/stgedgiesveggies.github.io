@@ -1,0 +1,11 @@
+{
+  "name": "edgies-veggies",
+  "version": "1.0.0",
+  "description": "Marketing site for a small-scale market garden in St. Paul, MN.",
+  "scripts": {
+    "copy-assets": "cp node_modules/uikit/dist/js/uikit.min.js assets/js/ && cp node_modules/uikit/dist/js/uikit-icons.min.js assets/js/"
+  },
+  "dependencies": {
+    "uikit": "3.16.14"
+  }
+}
