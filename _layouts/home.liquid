@@ -3,18 +3,6 @@
 {% include head.html %}
 
 <body class="uk-text-center">
-    <nav class="uk-navbar-container" uk-navbar>
-        <div class="uk-container">
-            <div class="uk-navbar-left">
-                <a class="uk-navbar-item uk-logo" href="{{ '/' | relative_url }}">Edgie's Veggies</a>
-            </div>
-            <div class="uk-navbar-right">
-                <ul class="uk-navbar-nav">
-                    <li><a href="{{ '/updates/' | relative_url }}">Farm Updates</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <div
         class="uk-container uk-container-xsmall uk-padding-remove-left uk-padding-remove-right">
         <div class="uk-cover-container uk-height-medium">
@@ -94,6 +82,38 @@
 
         </div>
     </div>
+
+    {% assign latest_post = site.posts.first %}
+    {% if latest_post %}
+    <div class="uk-container uk-container-xsmall uk-margin-medium-bottom">
+        <div class="uk-tile uk-tile-default edgie-border">
+            <p class="uk-text-uppercase uk-text-small uk-text-muted uk-margin-remove-bottom">Latest from the Farm</p>
+            {% if latest_post.cover_image %}
+            <div class="uk-margin-small-top">
+                <img src="{{ latest_post.cover_image | relative_url }}"
+                     alt="{{ latest_post.title }}"
+                     class="uk-width-1-1"
+                     style="max-height: 240px; object-fit: cover; border-radius: 4px;">
+            </div>
+            {% endif %}
+            <h2 class="uk-h3 uk-margin-small-top uk-margin-remove-bottom">
+                <a href="{{ latest_post.url | relative_url }}" class="uk-link-reset">{{ latest_post.title }}</a>
+            </h2>
+            <p class="uk-article-meta uk-margin-remove-top uk-margin-small-bottom">
+                {{ latest_post.date | date: "%B %-d, %Y" }}
+            </p>
+            {% if latest_post.excerpt %}
+            <p class="uk-text-left">{{ latest_post.excerpt | strip_html | truncatewords: 50 }}</p>
+            {% endif %}
+            <div class="uk-margin-small-top">
+                <a href="{{ latest_post.url | relative_url }}" class="uk-button uk-button-default">Read the full update &rarr;</a>
+            </div>
+            <p class="uk-margin-small-top">
+                <a href="{{ '/updates/' | relative_url }}">View all past updates</a>
+            </p>
+        </div>
+    </div>
+    {% endif %}
 
     <div
         class="uk-container uk-container-xsmall uk-margin-medium-bottom uk-padding-remove-left uk-padding-remove-right">

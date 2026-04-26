@@ -2,18 +2,6 @@
 <html lang="en">
 {% include head.html %}
 <body>
-    <nav class="uk-navbar-container" uk-navbar>
-        <div class="uk-container">
-            <div class="uk-navbar-left">
-                <a class="uk-navbar-item uk-logo" href="{{ '/' | relative_url }}">Edgie's Veggies</a>
-            </div>
-            <div class="uk-navbar-right">
-                <ul class="uk-navbar-nav">
-                    <li><a href="{{ '/updates/' | relative_url }}">Farm Updates</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <div class="uk-container">
         {{ content }}
     </div>
