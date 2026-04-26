@@ -26,11 +26,18 @@ layout: default
     </div>
 
     <hr class="uk-divider-small uk-margin-large-top">
-    <p>
-      <a href="{{ '/updates/' | relative_url }}" class="uk-button uk-button-default">
-        &larr; All Updates
-      </a>
-    </p>
+    <div class="uk-flex uk-flex-between uk-flex-middle" style="flex-wrap: wrap; gap: 0.5rem;">
+      <a href="{{ '/' | relative_url }}" class="uk-button uk-button-text">&larr; Home</a>
+      <div class="uk-flex" style="gap: 0.5rem; flex-wrap: wrap;">
+        {% if page.previous %}
+        <a href="{{ page.previous.url | relative_url }}" class="uk-button uk-button-default">&larr; Previous</a>
+        {% endif %}
+        {% if page.next %}
+        <a href="{{ page.next.url | relative_url }}" class="uk-button uk-button-default">Next &rarr;</a>
+        {% endif %}
+        <a href="{{ '/updates/' | relative_url }}" class="uk-button uk-button-default">All Updates</a>
+      </div>
+    </div>
 
   </article>
 </div>

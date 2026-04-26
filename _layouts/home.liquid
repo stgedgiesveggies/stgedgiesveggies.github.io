@@ -108,9 +108,11 @@
             <div class="uk-margin-small-top">
                 <a href="{{ latest_post.url | relative_url }}" class="uk-button uk-button-default">Read the full update &rarr;</a>
             </div>
+            {% if site.posts.size > 1 %}
             <p class="uk-margin-small-top">
-                <a href="{{ '/updates/' | relative_url }}">View all past updates</a>
+                <a href="{{ site.posts[1].url | relative_url }}">&larr; Previous update</a>
             </p>
+            {% endif %}
         </div>
     </div>
     {% endif %}
