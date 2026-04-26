@@ -13,8 +13,7 @@
                     sizes="(max-width: 750px) 100vw, 750px">
                 <img src="{{ '/assets/images/lettuce-cropped-web.jpeg' | relative_url }}"
                     alt="Beautiful Young Edgie's Veggies Lettuce covered in rain droplets"
-                    fetchpriority="high"
-                    uk-cover>
+                    fetchpriority="high" uk-cover>
             </picture>
         </div>
     </div>
@@ -78,7 +77,8 @@
                     </form>
                 </div>
             </div>
-            <script async src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
+            <script async
+                src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
 
         </div>
     </div>
@@ -87,30 +87,31 @@
     {% if latest_post %}
     <div class="uk-container uk-container-xsmall uk-margin-medium-bottom">
         <div class="uk-tile uk-tile-default edgie-border">
-            <p class="uk-text-uppercase uk-text-small uk-text-muted uk-margin-remove-bottom">Latest from the Farm</p>
+            <p
+                class="uk-text-uppercase uk-text-small uk-text-muted uk-margin-remove-bottom">
+                Latest from the Farm</p>
             {% if latest_post.cover_image %}
             <div class="uk-margin-small-top">
                 <img src="{{ latest_post.cover_image | relative_url }}"
-                     alt="{{ latest_post.title }}"
-                     class="uk-width-1-1"
-                     style="max-height: 240px; object-fit: cover; border-radius: 4px;">
+                    alt="{{ latest_post.title }}" class="uk-width-1-1"
+                    style="max-height: 240px; object-fit: cover; border-radius: 4px;">
             </div>
             {% endif %}
             <h2 class="uk-h3 uk-margin-small-top uk-margin-remove-bottom">
-                <a href="{{ latest_post.url | relative_url }}" class="uk-link-reset">{{ latest_post.title }}</a>
+                <a href="{{ latest_post.url | relative_url }}"
+                    class="uk-link-reset">{{ latest_post.title }}</a>
             </h2>
-            <p class="uk-article-meta uk-margin-remove-top uk-margin-small-bottom">
+            <p
+                class="uk-article-meta uk-margin-remove-top uk-margin-small-bottom">
                 {{ latest_post.date | date: "%B %-d, %Y" }}
             </p>
-            {% if latest_post.excerpt %}
-            <p class="uk-text-left">{{ latest_post.excerpt | strip_html | truncatewords: 50 }}</p>
-            {% endif %}
-            <div class="uk-margin-small-top">
-                <a href="{{ latest_post.url | relative_url }}" class="uk-button uk-button-default">Read the full update &rarr;</a>
-            </div>
+            <div class="uk-text-left uk-margin-small-top">{{ latest_post.content
+                }}</div>
             {% if site.posts.size > 1 %}
             <p class="uk-margin-small-top">
-                <a href="{{ site.posts[1].url | relative_url }}">&larr; Previous update</a>
+                <a href="{{ '/updates/' | relative_url }}"
+                    class="uk-button uk-button-default">Read past updates
+                    &rarr;</a>
             </p>
             {% endif %}
         </div>
@@ -123,7 +124,8 @@
             tabindex="-1" uk-slideshow="autoplay: true; ratio: 3:2">
             <ul class="uk-slideshow-items">
                 {% for image in site.static_files %}
-                {% if image.path contains 'images/home-slides/' and image.extname == '.jpeg' %}
+                {% if image.path contains 'images/home-slides/' and
+                image.extname == '.jpeg' %}
                 {% increment slider_counter %}
                 <li>
                     <picture>

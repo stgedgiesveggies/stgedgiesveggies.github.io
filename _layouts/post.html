@@ -9,9 +9,13 @@ layout: default
       <div class="uk-flex" style="gap: 0.5rem; flex-wrap: wrap;">
         {% if page.previous %}
         <a href="{{ page.previous.url | relative_url }}" class="uk-button uk-button-default">&larr; Previous</a>
+        {% else %}
+        <button class="uk-button uk-button-default uk-disabled" aria-disabled="true" disabled>&larr; Previous</button>
         {% endif %}
         {% if page.next %}
         <a href="{{ page.next.url | relative_url }}" class="uk-button uk-button-default">Next &rarr;</a>
+        {% else %}
+        <button class="uk-button uk-button-default uk-disabled" aria-disabled="true" disabled>Next &rarr;</button>
         {% endif %}
         <a href="{{ '/updates/' | relative_url }}" class="uk-button uk-button-default">All Updates</a>
       </div>
@@ -44,9 +48,13 @@ layout: default
       <div class="uk-flex" style="gap: 0.5rem; flex-wrap: wrap;">
         {% if page.previous %}
         <a href="{{ page.previous.url | relative_url }}" class="uk-button uk-button-default">&larr; Previous</a>
+        {% else %}
+        <button class="uk-button uk-button-default uk-disabled" aria-disabled="true" disabled>&larr; Previous</button>
         {% endif %}
         {% if page.next %}
         <a href="{{ page.next.url | relative_url }}" class="uk-button uk-button-default">Next &rarr;</a>
+        {% else %}
+        <button class="uk-button uk-button-default uk-disabled" aria-disabled="true" disabled>Next &rarr;</button>
         {% endif %}
         <a href="{{ '/updates/' | relative_url }}" class="uk-button uk-button-default">All Updates</a>
       </div>

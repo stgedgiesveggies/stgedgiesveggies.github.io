@@ -1,6 +1,7 @@
 ---
 ---
-@use 'sass:color';
+
+@use "sass:color";
 
 // 1. Your custom variables and variable overwrites.
 $global-background: #fffbeb;
@@ -11,44 +12,49 @@ $global-secondary-background: #00af95;
 
 $global-border: $global-secondary-background;
 
-$global-font-family: 'Barlow', sans-serif;
+$global-font-family: "Barlow", sans-serif;
 
 $form-background: #fff;
 $form-focus-background: #fff;
-
 
 // 2. Import default variables and available mixins.
 @import "variables-theme";
 @import "mixins-theme";
 
 // 3. Your custom mixin overwrites.
-@mixin hook-card() { color: #000; }
+@mixin hook-card() {
+  color: #000;
+}
 
 // 4. Import UIkit.
 @import "uikit-theme";
 
 .edgie-border {
-    border: 1px $global-link-color solid
+  border: 1px $global-link-color solid;
 }
 
 .edgie-secondary-border {
-    border: 1px $global-secondary-background solid
+  border: 1px $global-secondary-background solid;
 }
 
 .logo {
-    color: $global-primary-background;
-    text-shadow: 0.3rem 0.3rem #ffde59;
+  color: $global-primary-background;
+  text-shadow: 0.3rem 0.3rem #ffde59;
+}
+
+.uk-button[disabled] {
+  opacity: 0.35;
 }
 
 .logo-sub-heading {
-    letter-spacing: 0.2rem;
-    color: $global-secondary-background;
-    font-size: 1rem;
+  letter-spacing: 0.2rem;
+  color: $global-secondary-background;
+  font-size: 1rem;
 
-    @media (min-width: $breakpoint-small) {
-        font-size: 1.25rem;
-    }
-    @media (min-width: $breakpoint-medium) {
-        font-size: 1.5rem;
-    }
+  @media (min-width: $breakpoint-small) {
+    font-size: 1.25rem;
+  }
+  @media (min-width: $breakpoint-medium) {
+    font-size: 1.5rem;
+  }
 }
