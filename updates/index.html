@@ -1,0 +1,42 @@
+---
+layout: default
+title: Farm Updates
+description: Weekly market updates, produce availability, and news from Edgie's Veggies.
+---
+<div style="max-width: 720px; margin: 2rem auto 4rem;">
+  <h1 class="uk-heading-small">Farm Updates</h1>
+  <p class="uk-text-lead uk-margin-remove-top">Weekly market news, what's in season, and stories from the farm.</p>
+  <hr class="uk-divider-small">
+
+  <ul class="uk-list uk-list-divider uk-margin-medium-top">
+    {% for post in site.posts %}
+    <li class="uk-padding-small uk-padding-remove-horizontal">
+      <div class="uk-grid-small uk-flex-middle" uk-grid>
+        <div class="uk-width-expand">
+          <h2 class="uk-h3 uk-margin-remove-bottom">
+            <a href="{{ post.url | relative_url }}" class="uk-link-reset">{{ post.title }}</a>
+          </h2>
+          <p class="uk-article-meta uk-margin-remove-top uk-margin-small-bottom">
+            {{ post.date | date: "%B %-d, %Y" }}
+          </p>
+          {% if post.excerpt %}
+          <p class="uk-margin-remove">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+          {% endif %}
+        </div>
+        {% if post.cover_image %}
+        <div class="uk-width-auto uk-visible@s">
+          <img src="{{ post.cover_image | relative_url }}"
+               width="120" height="80"
+               style="object-fit: cover; border-radius: 4px;"
+               alt="{{ post.title }}">
+        </div>
+        {% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+
+  {% if site.posts.size == 0 %}
+  <p class="uk-text-muted uk-text-center uk-margin-large-top">No updates yet — check back soon!</p>
+  {% endif %}
+</div>

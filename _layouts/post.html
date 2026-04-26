@@ -1,4 +1,36 @@
 ---
 layout: default
 ---
-{{ content }}
+<div style="max-width: 720px; margin: 2rem auto 4rem;">
+  <article class="uk-article">
+
+    {% if page.cover_image %}
+    <div class="uk-margin-medium-bottom">
+      <img src="{{ page.cover_image | relative_url }}"
+           alt="{{ page.title }}"
+           class="uk-width-1-1"
+           style="max-height: 480px; object-fit: cover; border-radius: 4px;">
+    </div>
+    {% endif %}
+
+    <h1 class="uk-article-title">{{ page.title }}</h1>
+
+    <p class="uk-article-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%B %-d, %Y" }}
+      </time>
+    </p>
+
+    <div class="uk-margin-medium-top">
+      {{ content }}
+    </div>
+
+    <hr class="uk-divider-small uk-margin-large-top">
+    <p>
+      <a href="{{ '/updates/' | relative_url }}" class="uk-button uk-button-default">
+        &larr; All Updates
+      </a>
+    </p>
+
+  </article>
+</div>

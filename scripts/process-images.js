@@ -10,6 +10,11 @@ const SOURCES = [
   ...fs.readdirSync('assets/images/home-slides')
     .filter(f => /\.(jpe?g|png)$/i.test(f))
     .map(f => `assets/images/home-slides/${f}`),
+  ...(fs.existsSync('assets/images/posts')
+    ? fs.readdirSync('assets/images/posts')
+        .filter(f => /\.(jpe?g|png)$/i.test(f))
+        .map(f => `assets/images/posts/${f}`)
+    : []),
 ];
 
 async function processImage(inputPath) {

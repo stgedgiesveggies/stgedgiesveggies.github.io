@@ -1,0 +1,7 @@
+[build]
+  command = "npm install && npm run process-images && npm run copy-assets && bundle exec jekyll build && npm run purgecss"
+  publish = "_site"
+
+[build.environment]
+  JEKYLL_ENV = "production"
+  NODE_VERSION = "20"

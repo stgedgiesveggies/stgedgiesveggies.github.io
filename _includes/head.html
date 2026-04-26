@@ -6,12 +6,17 @@
     <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
 
-    <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ site.title }}">
     <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
     <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
+    {% if page.cover_image %}
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="{{ page.cover_image | absolute_url }}">
+    {% else %}
+    <meta property="og:type" content="website">
     <meta property="og:image" content="{{ '/assets/images/lettuce-cropped-web-1500.webp' | absolute_url }}">
+    {% endif %}
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

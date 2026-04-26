@@ -24,7 +24,7 @@ description: >-
   Small-scale market garden growing delicious salad greens in St. Paul, MN.
   Find us Saturdays at the St. Paul Farmers' Market.
 baseurl: ""
-url: "https://edgiesveggies.github.io"
+url: "https://edgiesveggies.com"
 # twitter_username: jekyllrb
 github_username:  edgiesveggies
 
@@ -32,6 +32,7 @@ github_username:  edgiesveggies
 # theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
 sass:
   load_paths:
@@ -45,3 +46,4 @@ exclude:
   - node_modules/
   - package.json
   - package-lock.json
+  - netlify.toml

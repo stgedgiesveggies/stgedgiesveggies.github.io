@@ -1,0 +1,75 @@
+# Staging config: uses Netlify git-gateway + Netlify Identity (no OAuth App needed).
+#
+# Before going live on GitHub Pages, change the backend section to:
+#   backend:
+#     name: github
+#     repo: edgiesveggies/edgiesveggies.github.io
+#     branch: main
+#     auth_type: pkce
+#     app_id: YOUR_GITHUB_OAUTH_APP_CLIENT_ID
+# Then enable the GitHub OAuth App in GitHub → Settings → Developer settings → OAuth Apps.
+
+backend:
+  name: git-gateway
+  branch: feature/farm-updates
+
+media_folder: "assets/images/posts"
+public_folder: "/assets/images/posts"
+
+site_url: "https://edgiesveggies.com"
+display_url: "https://edgiesveggies.com"
+logo_url: "/assets/images/lettuce-cropped-web.jpeg"
+
+publish_mode: simple
+
+collections:
+  - name: "posts"
+    label: "Farm Updates"
+    label_singular: "Farm Update"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "{{year}}/{{month}}/{{day}}/{{slug}}.html"
+    editor:
+      preview: false
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: 'e.g. "Market Update — May 3rd: Salad Mix, Radishes, and Baby Spinach"'
+
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "MMMM D, YYYY"
+        time_format: false
+        default: "{{now}}"
+
+      - label: "Cover Photo"
+        name: "cover_image"
+        widget: "image"
+        required: false
+        hint: "A photo for the top of the post and social sharing. Upload from your phone or computer."
+        media_library:
+          config:
+            multiple: false
+
+      - label: "Post Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - bulleted-list
+          - numbered-list
+          - link
+          - image
+        editor_components:
+          - image
+        hint: "Write your update here. Use the toolbar to add bold text, lists, or more photos."
+
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "post"
