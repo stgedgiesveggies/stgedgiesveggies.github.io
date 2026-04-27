@@ -1,17 +1,17 @@
 # Staging config: uses Netlify git-gateway + Netlify Identity (no OAuth App needed).
 #
 # Before going live on GitHub Pages, change the backend section to:
-#   backend:
-#     name: github
-#     repo: edgiesveggies/edgiesveggies.github.io
-#     branch: main
-#     auth_type: pkce
-#     app_id: YOUR_GITHUB_OAUTH_APP_CLIENT_ID
+  backend:
+    name: github
+    repo: jasunde/edgies-veggies
+    branch: feature/farm-updates
+    auth_type: pkce
+    app_id: Ov23libxhfLgXMCAHyQx
 # Then enable the GitHub OAuth App in GitHub → Settings → Developer settings → OAuth Apps.
 
-backend:
-  name: git-gateway
-  branch: feature/farm-updates
+# backend:
+#   name: git-gateway
+#   branch: feature/farm-updates
 
 media_folder: "assets/images/posts"
 public_folder: "/assets/images/posts"
