@@ -35,57 +35,19 @@
                 lasts using principles and methods that embrace the soil's
                 biological systems.
             </p>
-            <p class="uk-margin-large-bottom">Find our greens on Saturdays
+            <p>Find our greens on Saturdays
                 at<br />
                 <span class="uk-text-large">St. Paul Farmers' Market, 290 5th
                     St.
                     East, St. Paul, MN 55101</span>
             </p>
-
-            <div>
-                <h1 class="uk-margin-small-bottom">Get our farm newsletter!</h1>
-                <div>
-                    <div>
-                        <p>We'll send you weekly harvest updates so you can plan
-                            your menu.
-                        </p>
-                    </div>
-                    <form
-                        class="js-cm-form uk-form-stacked uk-text-left uk-align-center uk-width-2-3@s"
-                        id="subForm"
-                        action="https://www.createsend.com/t/subscribeerror?description="
-                        method="post"
-                        data-id="2BE4EF332AA2E32596E38B640E9056198AB1CE755310223F51B9B7A1A84ECCF0D5273ABBAB8D761069F57EC9F57688E765894B26C821D8708B348E851258F3F4">
-                        <div class="uk-margin">
-                            <label class="uk-form-label">Name</label>
-                            <input aria-label="Name"
-                                class="uk-input edgie-secondary-border"
-                                id="fieldName" maxlength="200" name="cm-name">
-                        </div>
-                        <div class="uk-margin">
-                            <label class="uk-form-label">Email</label>
-                            <input autocomplete="Email" aria-label="Email"
-                                class="js-cm-email-input qa-input-email uk-input edgie-secondary-border"
-                                id="fieldEmail" maxlength="200"
-                                name="cm-ydykkhy-ydykkhy" required=""
-                                type="email">
-                        </div>
-                        <div class="uk-margin">
-                            <button type="submit"
-                                class="uk-button uk-button-secondary uk-align-center">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <script async
-                src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
-
         </div>
     </div>
 
     {% assign latest_post = site.posts.first %}
     {% if latest_post %}
-    <div class="uk-container uk-container-xsmall uk-margin-medium-bottom">
+    <div id="latest-post-card"
+        class="uk-container uk-container-xsmall uk-margin-medium-bottom">
         <div class="uk-tile uk-tile-default edgie-border">
             <p
                 class="uk-text-uppercase uk-text-small uk-text-muted uk-margin-remove-bottom">
@@ -110,8 +72,9 @@
             {% if site.posts.size > 1 %}
             <p class="uk-margin-small-top">
                 <a href="{{ '/updates/' | relative_url }}"
-                    class="uk-button uk-button-default">Read past updates
-                    &rarr;</a>
+                    class="uk-button uk-button-default">
+                    Read past updates &rarr;
+                </a>
             </p>
             {% endif %}
         </div>
@@ -178,6 +141,32 @@
         </div>
     </div>
     <p class="uk-text-center uk-text-small">&copy; Edgie's Veggies</p>
+
+    <!-- Newsletter bottom banner -->
+    <div uk-sticky="position: bottom">
+        <div id="newsletter-banner"
+            style="border-top: 1px #cf0089 solid; border-radius: 4px 4px 0 0;"
+            class="uk-background-default uk-box-shadow-medium uk-padding-small uk-text-center uk-position-z-index">
+            <span class="uk-text-emphasis">Get farm updates</span>
+            <a href="#newsletter-modal"
+                class="uk-button uk-button-secondary uk-margin-small-left"
+                uk-toggle>Subscribe</a>
+            <button id="newsletter-banner-close"
+                class="uk-margin-small-left uk-close" type="button"
+                uk-close></button>
+        </div>
+    </div>
+
+    <!-- Newsletter modal (homepage) -->
+    <div id="newsletter-modal" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body uk-text-center">
+            <button class="uk-modal-close-outside" type="button"
+                uk-close></button>
+            <h2 class="uk-modal-title">Get our farm newsletter!</h2>
+            {% include newsletter-form.html %}
+        </div>
+    </div>
+
 </body>
 
 </html>

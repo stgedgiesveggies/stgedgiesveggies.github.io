@@ -64,7 +64,6 @@ collections:
           - bulleted-list
           - numbered-list
           - link
-          - image
         editor_components:
           - image
         hint: "Write your update here. Use the toolbar to add bold text, lists, or more photos."

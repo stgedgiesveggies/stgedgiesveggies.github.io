@@ -57,8 +57,17 @@ layout: default
         <button class="uk-button uk-button-default uk-disabled" aria-disabled="true" disabled>Next &rarr;</button>
         {% endif %}
         <a href="{{ '/updates/' | relative_url }}" class="uk-button uk-button-default">All Updates</a>
+        <a href="#newsletter-modal" class="uk-button uk-button-secondary" uk-toggle>Subscribe</a>
       </div>
     </div>
 
   </article>
+</div>
+
+<div id="newsletter-modal" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body uk-text-center">
+    <button class="uk-modal-close-outside" type="button" uk-close></button>
+    <h2 class="uk-modal-title">Get our farm newsletter!</h2>
+    {% include newsletter-form.html %}
+  </div>
 </div>
