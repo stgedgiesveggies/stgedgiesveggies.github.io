@@ -3,158 +3,169 @@
 {% include head.html %}
 
 <body class="uk-text-center">
-    <div
-        class="uk-container uk-container-xsmall uk-padding-remove-left uk-padding-remove-right">
-        <div class="uk-cover-container uk-height-medium">
-            <picture>
-                <source type="image/webp"
-                    srcset="{{ '/assets/images/lettuce-cropped-web-750.webp' | relative_url }} 750w,
-                            {{ '/assets/images/lettuce-cropped-web-1500.webp' | relative_url }} 1500w"
-                    sizes="(max-width: 750px) 100vw, 750px">
-                <img src="{{ '/assets/images/lettuce-cropped-web.jpeg' | relative_url }}"
-                    alt="Beautiful Young Edgie's Veggies Lettuce covered in rain droplets"
-                    fetchpriority="high" uk-cover>
-            </picture>
-        </div>
-    </div>
-
-
-    <div>
-        <div
-            class="uk-heading-xlarge uk-text-bolder uk-margin-small-bottom logo">
-            EDGIE'S VEGGIES</div>
-        <p class="uk-text-light uk-margin-remove-top logo-sub-heading">
-            SALAD GREENS GROWN IN ST. PAUL SOIL</p>
-    </div>
-
     <div class="uk-container uk-container-xsmall">
+        <!-- Newsletter bottom banner -->
+        <div uk-sticky="position: bottom">
+            <div id="newsletter-banner"
+                style="border-top: 1px #cf0089 solid; border-radius: 4px 4px 0 0;"
+                class="uk-background-default uk-box-shadow-medium uk-padding-small uk-text-center uk-position-z-index">
+                <span class="uk-text-emphasis">Get farm updates</span>
+                <a href="#newsletter-modal"
+                    class="uk-button uk-button-secondary uk-margin-small-left"
+                    uk-toggle>Subscribe</a>
+                <button id="newsletter-banner-close"
+                    class="uk-margin-small-left uk-close" type="button"
+                    uk-close></button>
+            </div>
+        </div>
+
         <div
-            class="uk-tile uk-tile-default uk-margin-medium-bottom edgie-border">
-            <p>Edgie's Veggies is a small scale market garden in St. Paul, MN.
-                We grow absolutely delicious salad greens with a freshness that
-                lasts using principles and methods that embrace the soil's
-                biological systems.
-            </p>
-            <p>Find our greens on Saturdays
-                at<br />
-                <span class="uk-text-large">St. Paul Farmers' Market, 290 5th
-                    St.
-                    East, St. Paul, MN 55101</span>
-            </p>
-        </div>
-    </div>
-
-    {% assign latest_post = site.posts.first %}
-    {% if latest_post %}
-    <div id="latest-post-card"
-        class="uk-container uk-container-xsmall uk-margin-medium-bottom">
-        <div class="uk-tile uk-tile-default edgie-border">
-            <p
-                class="uk-text-uppercase uk-text-small uk-text-muted uk-margin-remove-bottom">
-                Latest from the Farm</p>
-            {% if latest_post.cover_image %}
-            <div class="uk-margin-small-top">
-                <img src="{{ latest_post.cover_image | relative_url }}"
-                    alt="{{ latest_post.title }}" class="uk-width-1-1"
-                    style="max-height: 240px; object-fit: cover; border-radius: 4px;">
+            class="uk-container uk-container-xsmall uk-padding-remove-left uk-padding-remove-right">
+            <div class="uk-cover-container uk-height-medium">
+                <picture>
+                    <source type="image/webp"
+                        srcset="{{ '/assets/images/lettuce-cropped-web-750.webp' | relative_url }} 750w,
+                            {{ '/assets/images/lettuce-cropped-web-1500.webp' | relative_url }} 1500w"
+                        sizes="(max-width: 750px) 100vw, 750px">
+                    <img src="{{ '/assets/images/lettuce-cropped-web.jpeg' | relative_url }}"
+                        alt="Beautiful Young Edgie's Veggies Lettuce covered in rain droplets"
+                        fetchpriority="high" uk-cover>
+                </picture>
             </div>
-            {% endif %}
-            <h2 class="uk-h3 uk-margin-small-top uk-margin-remove-bottom">
-                <a href="{{ latest_post.url | relative_url }}"
-                    class="uk-link-reset">{{ latest_post.title }}</a>
-            </h2>
-            <p
-                class="uk-article-meta uk-margin-remove-top uk-margin-small-bottom">
-                {{ latest_post.date | date: "%B %-d, %Y" }}
-            </p>
-            <div class="uk-text-left uk-margin-small-top">{{ latest_post.content
-                }}</div>
-            {% if site.posts.size > 1 %}
-            <p class="uk-margin-small-top">
-                <a href="{{ '/updates/' | relative_url }}"
-                    class="uk-button uk-button-default">
-                    Read past updates &rarr;
-                </a>
-            </p>
-            {% endif %}
         </div>
-    </div>
-    {% endif %}
 
-    <div
-        class="uk-container uk-container-xsmall uk-margin-medium-bottom uk-padding-remove-left uk-padding-remove-right">
-        <div class="uk-position-relative uk-visible-toggle uk-light"
-            tabindex="-1" uk-slideshow="autoplay: true; ratio: 3:2">
-            <ul class="uk-slideshow-items">
-                {% for image in site.static_files %}
-                {% if image.path contains 'images/home-slides/' and
-                image.extname == '.jpeg' %}
-                {% increment slider_counter %}
-                <li>
-                    <picture>
-                        <source type="image/webp"
-                            srcset="{{ image.path | replace: '.jpeg', '-750.webp' | relative_url }} 750w,
-                                    {{ image.path | replace: '.jpeg', '-1500.webp' | relative_url }} 1500w"
-                            sizes="(max-width: 750px) 100vw, 750px">
-                        <img src="{{ image.path | relative_url }}" alt=""
-                            uk-cover loading="lazy">
-                    </picture>
-                </li>
+
+        <div>
+            <div
+                class="uk-heading-xlarge uk-text-bolder uk-margin-small-bottom logo">
+                EDGIE'S VEGGIES</div>
+            <p class="uk-text-light uk-margin-remove-top logo-sub-heading">
+                SALAD GREENS GROWN IN ST. PAUL SOIL</p>
+        </div>
+
+        <div class="uk-container uk-container-xsmall">
+            <div
+                class="uk-tile uk-tile-default uk-margin-medium-bottom edgie-border">
+                <p>Edgie's Veggies is a small scale market garden in St. Paul,
+                    MN.
+                    We grow absolutely delicious salad greens with a freshness
+                    that
+                    lasts using principles and methods that embrace the soil's
+                    biological systems.
+                </p>
+                <p>Find our greens on Saturdays
+                    at<br />
+                    <span class="uk-text-large">St. Paul Farmers' Market, 290
+                        5th
+                        St.
+                        East, St. Paul, MN 55101</span>
+                </p>
+            </div>
+        </div>
+
+        {% assign latest_post = site.posts.first %}
+        {% if latest_post %}
+        <div id="latest-post-card"
+            class="uk-container uk-container-xsmall uk-margin-medium-bottom">
+            <div class="uk-tile uk-tile-default edgie-border">
+                <p
+                    class="uk-text-uppercase uk-text-small uk-text-muted uk-margin-remove-bottom">
+                    Latest from the Farm</p>
+                {% if latest_post.cover_image %}
+                <div class="uk-margin-small-top">
+                    <img src="{{ latest_post.cover_image | relative_url }}"
+                        alt="{{ latest_post.title }}" class="uk-width-1-1"
+                        style="max-height: 240px; object-fit: cover; border-radius: 4px;">
+                </div>
                 {% endif %}
-                {% endfor %}
-                {% decrement slider_counter %}
-            </ul>
+                <h2 class="uk-h3 uk-margin-small-top uk-margin-remove-bottom">
+                    <a href="{{ latest_post.url | relative_url }}"
+                        class="uk-link-reset">{{ latest_post.title }}</a>
+                </h2>
+                <p
+                    class="uk-article-meta uk-margin-remove-top uk-margin-small-bottom">
+                    {{ latest_post.date | date: "%B %-d, %Y" }}
+                </p>
+                <div class="uk-text-left uk-margin-small-top">{{
+                    latest_post.content
+                    }}</div>
+                {% if site.posts.size > 1 %}
+                <p class="uk-margin-small-top">
+                    <a href="{{ '/updates/' | relative_url }}"
+                        class="uk-button uk-button-default">
+                        Read past updates &rarr;
+                    </a>
+                </p>
+                {% endif %}
+            </div>
 
-            <a class="uk-position-center-left uk-position-small" href="#"
-                uk-slidenav-previous uk-slideshow-item="previous"></a>
-            <a class="uk-position-center-right uk-position-small" href="#"
-                uk-slidenav-next uk-slideshow-item="next"></a>
+        </div>
+        {% endif %}
 
-            <div class="uk-position-bottom-center uk-position-small">
-                <ul class="uk-dotnav">
-                    {% for i in (0..slider_counter) %}
-                    <li uk-slideshow-item="{{ i }}"><a href="#">Item {{ i }}</a>
+        <div
+            class="uk-container uk-container-xsmall uk-margin-medium-bottom uk-padding-remove-left uk-padding-remove-right">
+            <div class="uk-position-relative uk-visible-toggle uk-light"
+                tabindex="-1" uk-slideshow="autoplay: true; ratio: 3:2">
+                <ul class="uk-slideshow-items">
+                    {% for image in site.static_files %}
+                    {% if image.path contains 'images/home-slides/' and
+                    image.extname == '.jpeg' %}
+                    {% increment slider_counter %}
+                    <li>
+                        <picture>
+                            <source type="image/webp"
+                                srcset="{{ image.path | replace: '.jpeg', '-750.webp' | relative_url }} 750w,
+                                    {{ image.path | replace: '.jpeg', '-1500.webp' | relative_url }} 1500w"
+                                sizes="(max-width: 750px) 100vw, 750px">
+                            <img src="{{ image.path | relative_url }}" alt=""
+                                uk-cover loading="lazy">
+                        </picture>
                     </li>
+                    {% endif %}
                     {% endfor %}
+                    {% decrement slider_counter %}
                 </ul>
-            </div>
-        </div>
-    </div>
 
-    <div class="uk-container uk-container-xsmall uk-margin-medium">
-        <div class="uk-child-width-1-2@s uk-grid-medium uk-grid-match uk-grid"
-            uk-grid>
-            <div class="uk-first-column">
-                <div class="uk-card uk-card-default uk-card-body edgie-border">
-                    <h3 class="uk-text-large">CONTACT US</h3>
-                    <a
-                        href="mailto:edgie@edgiesveggies">edgie@edgiesveggies.com</a>
-                </div>
-            </div>
-            <div>
-                <div class="uk-card uk-card-default uk-card-body edgie-border">
-                    <h3>Follow Us</h3>
-                    <a href="https://www.instagram.com/edgiesveggies/"
-                        uk-icon="icon: instagram; ratio: 2;"></a>
+                <a class="uk-position-center-left uk-position-small" href="#"
+                    uk-slidenav-previous uk-slideshow-item="previous"></a>
+                <a class="uk-position-center-right uk-position-small" href="#"
+                    uk-slidenav-next uk-slideshow-item="next"></a>
+
+                <div class="uk-position-bottom-center uk-position-small">
+                    <ul class="uk-dotnav">
+                        {% for i in (0..slider_counter) %}
+                        <li uk-slideshow-item="{{ i }}"><a href="#">Item {{ i
+                                }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-    <p class="uk-text-center uk-text-small">&copy; Edgie's Veggies</p>
 
-    <!-- Newsletter bottom banner -->
-    <div uk-sticky="position: bottom">
-        <div id="newsletter-banner"
-            style="border-top: 1px #cf0089 solid; border-radius: 4px 4px 0 0;"
-            class="uk-background-default uk-box-shadow-medium uk-padding-small uk-text-center uk-position-z-index">
-            <span class="uk-text-emphasis">Get farm updates</span>
-            <a href="#newsletter-modal"
-                class="uk-button uk-button-secondary uk-margin-small-left"
-                uk-toggle>Subscribe</a>
-            <button id="newsletter-banner-close"
-                class="uk-margin-small-left uk-close" type="button"
-                uk-close></button>
+        <div class="uk-container uk-container-xsmall uk-margin-medium">
+            <div class="uk-child-width-1-2@s uk-grid-medium uk-grid-match uk-grid"
+                uk-grid>
+                <div class="uk-first-column">
+                    <div
+                        class="uk-card uk-card-default uk-card-body edgie-border">
+                        <h3 class="uk-text-large">CONTACT US</h3>
+                        <a
+                            href="mailto:edgie@edgiesveggies">edgie@edgiesveggies.com</a>
+                    </div>
+                </div>
+                <div>
+                    <div
+                        class="uk-card uk-card-default uk-card-body edgie-border">
+                        <h3>Follow Us</h3>
+                        <a href="https://www.instagram.com/edgiesveggies/"
+                            uk-icon="icon: instagram; ratio: 2;"></a>
+                    </div>
+                </div>
+            </div>
         </div>
+        <p class="uk-text-center uk-text-small">&copy; Edgie's Veggies</p>
+
     </div>
 
     <!-- Newsletter modal (homepage) -->
