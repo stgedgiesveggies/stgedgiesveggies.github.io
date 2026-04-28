@@ -1,6 +1,6 @@
 # Edgie's Veggies — Developer Guide
 
-Marketing site for a small-scale market garden in St. Paul, MN. Built with Jekyll and deployed automatically to GitHub Pages.
+Marketing site for a small-scale market garden in St. Paul, MN. Built with Jekyll, deployed to GitHub Pages (production) and Netlify (staging).
 
 ## Stack
 
@@ -8,25 +8,28 @@ Marketing site for a small-scale market garden in St. Paul, MN. Built with Jekyl
 |---|---|
 | Site generator | Jekyll 4.3.2 |
 | Runtime | Ruby 3.2.2 |
-| CSS framework | UIKit 3 |
+| CSS framework | UIKit 3 (via npm) |
 | Templating | Liquid |
+| Image processing | sharp (Node.js) |
+| CSS purging | PurgeCSS |
+| CMS | Decap CMS (`/admin/`) |
 | Newsletter | Campaign Monitor (CreateSend) |
-| Hosting | GitHub Pages (`edgiesveggies.github.io`) |
+| Hosting | GitHub Pages + Netlify (staging) |
 | Large assets | Git LFS |
 
 ## Prerequisites
 
 - Ruby 3.2.2 (see `.ruby-version` — use RVM or rbenv)
 - Bundler (`gem install bundler`)
+- Node.js 20+ and npm
 - Git LFS (`brew install git-lfs && git lfs install`)
-
-No Node.js or npm required.
 
 ## Local Setup
 
 ```bash
 git clone git@github.com:edgiesveggies/edgiesveggies.github.io.git
 cd edgiesveggies.github.io
+npm install
 bundle install
 ```
 
@@ -40,12 +43,17 @@ bundle exec jekyll serve
 bundle exec jekyll serve --config _config_jasunde.yml
 ```
 
-Jekyll watches for file changes and rebuilds automatically. Config changes (`_config.yml`) require a server restart.
+Jekyll watches for file changes and rebuilds automatically. Config changes (`_config.yml`) require a server restart. The dev server skips image processing and PurgeCSS — use the full build to verify those steps.
 
 ## Build
 
+The full build pipeline (matches CI and Netlify):
+
 ```bash
-bundle exec jekyll build
+npm run process-images   # generate responsive WebP variants
+npm run copy-assets      # copy UIKit JS from node_modules to assets/js/
+bundle exec jekyll build # compile site to _site/
+npm run purgecss         # strip unused CSS
 # Output goes to _site/ (gitignored)
 ```
 
@@ -88,7 +96,12 @@ assets/
 
 ## Deployment
 
-Push to `main`. GitHub Pages runs the Jekyll build and publishes automatically — no CI configuration needed. The `_site/` directory is never committed.
+| Environment | Trigger |
+|---|---|
+| Production | Push to `main` → GitHub Actions → GitHub Pages |
+| Staging | Push to `feature/farm-updates` → Netlify |
+
+The `_site/` directory is never committed. Netlify uses `netlify.toml` and runs the full build pipeline including image processing and PurgeCSS.
 
 ## Alternate Config
 
