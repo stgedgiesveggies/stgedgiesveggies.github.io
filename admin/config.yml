@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: jasunde/edgies-veggies
-  branch: feature/farm-updates
+  branch: staging
   auth_type: pkce
   app_id: Ov23libxhfLgXMCAHyQx
 

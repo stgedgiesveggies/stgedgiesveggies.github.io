@@ -39,8 +39,6 @@ bundle install
 # Start dev server at http://localhost:4000
 bundle exec jekyll serve
 
-# If you're working from the jasunde fork with a /demos/ base URL:
-bundle exec jekyll serve --config _config_jasunde.yml
 ```
 
 Jekyll watches for file changes and rebuilds automatically. Config changes (`_config.yml`) require a server restart. The dev server skips image processing and PurgeCSS — use the full build to verify those steps.
@@ -99,10 +97,7 @@ assets/
 | Environment | Trigger |
 |---|---|
 | Production | Push to `main` → GitHub Actions → GitHub Pages |
-| Staging | Push to `feature/farm-updates` → Netlify |
+| Staging | Push to `staging` → Netlify |
 
 The `_site/` directory is never committed. Netlify uses `netlify.toml` and runs the full build pipeline including image processing and PurgeCSS.
 
-## Alternate Config
-
-`_config_jasunde.yml` sets `baseurl: /demos/edgies-veggies` and `github_username: jasunde`. Use it when serving the site from a subdirectory (e.g. a personal demos server).

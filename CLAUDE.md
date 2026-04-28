@@ -19,7 +19,6 @@ Marketing site for a small-scale market garden in St. Paul, MN. Built with Jekyl
 
 ```bash
 bundle exec jekyll serve           # http://localhost:4000
-bundle exec jekyll serve --config _config_jasunde.yml  # jasunde fork, baseurl /demos/edgies-veggies
 ```
 
 Use the local server to verify UI changes before reporting them complete. Config changes (`_config.yml`) require a server restart; template and asset changes hot-reload automatically.
@@ -43,7 +42,7 @@ Running `bundle exec jekyll serve` locally skips image processing and purgecss �
 | Environment | Trigger | URL |
 |---|---|---|
 | Production | Push to `main` → GitHub Actions | edgiesveggies.com |
-| Staging | Push to `feature/farm-updates` → Netlify | Netlify preview URL |
+| Staging | Push to `staging` → Netlify | Netlify preview URL |
 
 Netlify uses `netlify.toml` and runs the full build pipeline including image processing and purgecss.
 
@@ -96,6 +95,3 @@ scripts/
   process-images.js # Sharp-based image pipeline
 ```
 
-## Alternate Config
-
-`_config_jasunde.yml` sets `baseurl: /demos/edgies-veggies` and `github_username: jasunde`. Use when serving from the jasunde fork's subdirectory path.
