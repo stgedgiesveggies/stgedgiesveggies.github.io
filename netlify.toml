@@ -1,5 +1,5 @@
 [build]
-  command = "npm install && npm run process-images && npm run copy-assets && bundle exec jekyll build && npm run purgecss"
+  command = "npm install && npm run process-images && npm run copy-assets && bundle exec jekyll build"
   publish = "_site"
 
 [build.environment]
