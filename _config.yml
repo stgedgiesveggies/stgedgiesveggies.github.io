@@ -35,6 +35,7 @@ plugins:
   - jekyll-seo-tag
 
 sass:
+  style: compressed
   load_paths:
     - node_modules/uikit/src/scss
   silence_deprecations:
