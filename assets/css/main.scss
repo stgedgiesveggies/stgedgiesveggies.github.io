@@ -24,8 +24,63 @@ $form-focus-background: #fff;
 // 3. Your custom mixin overwrites.
 @mixin hook-card() { color: #000; }
 
-// 4. Import UIkit.
-@import "uikit-theme";
+// 4. Import only the UIkit components this site uses.
+
+// Base
+@import "components/base";
+@import "theme/base";
+
+// Elements
+@import "components/heading";
+@import "theme/heading";
+@import "components/icon";
+@import "theme/icon";
+@import "components/form";
+@import "theme/form";
+@import "components/button";
+@import "theme/button";
+
+// Layout
+@import "components/container";
+@import "theme/container";
+@import "components/tile";
+@import "theme/tile";
+@import "components/card";
+@import "theme/card";
+
+// Grid + slideshow
+@import "components/grid";
+@import "theme/grid";
+@import "components/slideshow";
+@import "components/slidenav";
+@import "theme/slidenav";
+@import "components/dotnav";
+@import "theme/dotnav";
+
+// Utilities
+@import "components/width";
+@import "theme/width";
+@import "components/height";
+@import "theme/height";
+@import "components/text";
+@import "theme/text";
+@import "components/cover";
+@import "components/align";
+@import "theme/align";
+@import "components/utility";
+@import "theme/utility";
+@import "components/flex";
+@import "components/margin";
+@import "theme/margin";
+@import "components/padding";
+@import "theme/padding";
+@import "components/position";
+@import "theme/position";
+@import "components/transition";
+@import "theme/transition";
+@import "components/visibility";
+@import "components/inverse";
+@import "theme/inverse";
 
 .edgie-border {
     border: 1px $global-link-color solid

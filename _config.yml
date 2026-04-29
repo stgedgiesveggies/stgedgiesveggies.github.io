@@ -34,6 +34,7 @@ plugins:
   - jekyll-feed
 
 sass:
+  style: compressed
   load_paths:
     - node_modules/uikit/src/scss
   silence_deprecations:
