@@ -5,7 +5,9 @@
   "scripts": {
     "process-images": "node scripts/process-images.js",
     "copy-assets": "cp node_modules/uikit/dist/js/uikit-core.min.js assets/js/ && cp node_modules/uikit/dist/js/components/slideshow.min.js assets/js/uikit-slideshow.min.js && cp node_modules/uikit/dist/js/uikit-icons.min.js assets/js/",
-    "purgecss": "purgecss --config purgecss.config.js"
+    "purgecss": "purgecss --config purgecss.config.js",
+    "build": "npm run copy-assets && bundle exec jekyll build && npm run purgecss",
+    "start": "npm run build && bundle exec jekyll serve --skip-initial-build"
   },
   "dependencies": {
     "purgecss": "^8.0.0",
