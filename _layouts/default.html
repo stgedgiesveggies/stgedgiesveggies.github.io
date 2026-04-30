@@ -2,6 +2,21 @@
 <html lang="en">
 {% include head.html %}
 <body>
+    <header style="border-bottom: 2px solid #cf0089; padding: 1rem 0 0.75rem;">
+        <div class="uk-container">
+            <div class="uk-flex uk-flex-middle" style="gap: 1.5rem; flex-wrap: wrap;">
+                <a href="{{ '/' | relative_url }}" style="text-decoration: none; line-height: 1;">
+                    <span class="uk-heading-small uk-text-bolder logo" style="display: block; margin: 0;">EDGIE'S VEGGIES</span>
+                </a>
+                <span class="logo-sub-heading">SALAD GREENS GROWN IN ST. PAUL SOIL</span>
+            </div>
+        </div>
+    </header>
+    <nav style="padding: 0.5rem 0; margin-bottom: 0.5rem;">
+        <div class="uk-container">
+            <a href="{{ '/' | relative_url }}" class="uk-button uk-button-text">&larr; Home</a>
+        </div>
+    </nav>
     <div class="uk-container">
         {{ content }}
     </div>
