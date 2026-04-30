@@ -1,6 +1,6 @@
 ---
 title: "Week 9 Harvest Update: Salanova Comeback & Radishes Everywhere"
-date: 2026-05-02
+date: 2026-04-29
 cover_image: https://images.stockcake.com/public/0/6/a/06a9de9d-1d07-44e8-99a3-ec3b92908e3f_large/lush-vegetable-garden-stockcake.jpg
 layout: post
 ---
