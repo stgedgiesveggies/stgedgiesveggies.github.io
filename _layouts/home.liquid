@@ -4,20 +4,6 @@
 
 <body class="uk-text-center">
     <div class="uk-container uk-container-xsmall">
-        <!-- Newsletter bottom banner -->
-        <div uk-sticky="position: bottom">
-            <div id="newsletter-banner"
-                style="border-top: 1px #cf0089 solid; border-radius: 4px 4px 0 0;"
-                class="uk-background-default uk-box-shadow-medium uk-padding-small uk-text-center uk-position-z-index">
-                <span class="uk-text-emphasis">Get farm updates</span>
-                <a href="#newsletter-modal"
-                    class="uk-button uk-button-secondary uk-margin-small-left"
-                    uk-toggle>Subscribe</a>
-                <button id="newsletter-banner-close"
-                    class="uk-margin-small-left uk-close" type="button"
-                    uk-close></button>
-            </div>
-        </div>
 
         <div
             class="uk-container uk-container-xsmall uk-padding-remove-left uk-padding-remove-right">
@@ -25,7 +11,7 @@
                 <picture>
                     <source type="image/webp"
                         srcset="{{ '/assets/images/lettuce-cropped-web-750.webp' | relative_url }} 750w,
-                            {{ '/assets/images/lettuce-cropped-web-1500.webp' | relative_url }} 1500w"
+                                {{ '/assets/images/lettuce-cropped-web-1500.webp' | relative_url }} 1500w"
                         sizes="(max-width: 750px) 100vw, 750px">
                     <img src="{{ '/assets/images/lettuce-cropped-web.jpeg' | relative_url }}"
                         alt="Beautiful Young Edgie's Veggies Lettuce covered in rain droplets"
@@ -63,6 +49,7 @@
             </div>
         </div>
 
+
         {% assign latest_post = site.posts.first %}
         {% if latest_post %}
         <div id="latest-post-card"
@@ -86,6 +73,29 @@
                     class="uk-article-meta uk-margin-remove-top uk-margin-small-bottom">
                     {{ latest_post.date | date: "%B %-d, %Y" }}
                 </p>
+
+                <div id="home-sticky-sentinel"
+                    uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true;">
+
+                    <!-- Newsletter bottom banner -->
+                    <div style="height: 0; overflow: hidden;">
+                        <div uk-sticky="position: bottom">
+                            <div id="newsletter-banner"
+                                style="border-top: 1px #cf0089 solid; border-radius: 4px 4px 0 0;"
+                                class="uk-background-default uk-box-shadow-medium uk-padding-small uk-text-center uk-position-z-index">
+                                <span class="uk-text-emphasis">Get farm
+                                    updates</span>
+                                <a href="#newsletter-modal"
+                                    class="uk-button uk-button-secondary uk-margin-small-left"
+                                    uk-toggle>Subscribe</a>
+                                <button id="newsletter-banner-close"
+                                    class="uk-margin-small-left uk-close"
+                                    type="button" uk-close></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="uk-text-left uk-margin-small-top">{{
                     latest_post.content
                     }}</div>
@@ -115,7 +125,7 @@
                         <picture>
                             <source type="image/webp"
                                 srcset="{{ image.path | replace: '.jpeg', '-750.webp' | relative_url }} 750w,
-                                    {{ image.path | replace: '.jpeg', '-1500.webp' | relative_url }} 1500w"
+                                        {{ image.path | replace: '.jpeg', '-1500.webp' | relative_url }} 1500w"
                                 sizes="(max-width: 750px) 100vw, 750px">
                             <img src="{{ image.path | relative_url }}" alt=""
                                 uk-cover loading="lazy">
@@ -178,6 +188,8 @@
         </div>
     </div>
 
+    <script defer
+        src="{{ '/assets/js/home-banner.js' | relative_url }}"></script>
 </body>
 
 </html>

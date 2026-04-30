@@ -4,7 +4,7 @@
   "description": "Marketing site for a small-scale market garden in St. Paul, MN.",
   "scripts": {
     "process-images": "node scripts/process-images.js",
-    "copy-assets": "cp node_modules/uikit/dist/js/uikit-core.min.js assets/js/ && cp node_modules/uikit/dist/js/components/slideshow.min.js assets/js/uikit-slideshow.min.js && cp node_modules/uikit/dist/js/uikit-icons.min.js assets/js/",
+    "copy-assets": "cp node_modules/uikit/dist/js/uikit.min.js assets/js/ && cp node_modules/uikit/dist/js/uikit-icons.min.js assets/js/",
     "build": "npm run copy-assets && bundle exec jekyll build",
     "start": "npm run build && bundle exec jekyll serve --skip-initial-build"
   },

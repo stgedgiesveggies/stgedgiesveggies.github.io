@@ -50,6 +50,20 @@ $form-focus-background: #fff;
 @import "components/card";
 @import "theme/card";
 
+// Modal
+@import "components/animation";
+@import "theme/animation";
+@import "components/close";
+@import "theme/close";
+@import "components/overlay";
+@import "theme/overlay";
+@import "components/modal";
+@import "theme/modal";
+
+// Sticky
+@import "components/sticky";
+@import "theme/sticky";
+
 // Grid + slideshow
 @import "components/grid";
 @import "theme/grid";
@@ -60,6 +74,7 @@ $form-focus-background: #fff;
 @import "theme/dotnav";
 
 // Utilities
+@import "components/background";
 @import "components/width";
 @import "theme/width";
 @import "components/height";
