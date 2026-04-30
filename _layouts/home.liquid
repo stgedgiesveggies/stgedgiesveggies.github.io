@@ -74,7 +74,7 @@
                     {{ latest_post.date | date: "%B %-d, %Y" }}
                 </p>
 
-                <div id="home-sticky-sentinel"
+                {% comment %} <div id="home-sticky-sentinel"
                     uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true;">
 
                     <!-- Newsletter bottom banner -->
@@ -95,7 +95,7 @@
                         </div>
                     </div>
 
-                </div>
+                </div> {% endcomment %}
                 <div class="uk-text-left uk-margin-small-top">{{
                     latest_post.content
                     }}</div>
