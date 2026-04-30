@@ -1,0 +1,56 @@
+---
+layout: default
+title: Upcoming Market Dates
+permalink: /upcoming-events/
+---
+{% assign now_ts = site.time | date: "%s" %}
+{% assign sorted_events = site.events | sort: "date" %}
+{% assign upcoming_events = "" | split: "" %}
+{% for event in sorted_events %}
+  {% if upcoming_events.size < 10 %}
+    {% assign event_ts = event.date | date: "%s" %}
+    {% if event_ts >= now_ts %}
+      {% assign upcoming_events = upcoming_events | push: event %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+<div class="uk-container-xsmall uk-margin-auto uk-padding">
+    <h1 class="logo uk-heading-medium uk-text-center">Upcoming Market Dates</h1>
+
+    {% if upcoming_events.size == 0 %}
+    <p class="uk-text-center uk-text-muted">No upcoming events right now — check back soon!</p>
+    {% else %}
+    {% for event in upcoming_events %}
+    <div class="uk-card uk-card-default uk-card-body edgie-border uk-margin-medium-bottom">
+        <h2 class="uk-h3 uk-margin-remove-bottom">{{ event.title }}</h2>
+        <p class="uk-article-meta uk-margin-remove-top uk-margin-small-bottom">
+            {{ event.date | date: "%A, %B %-d, %Y" }}
+            &middot;
+            {{ event.date | date: "%-I:%M %p" }}–{{ event.end_date | date: "%-I:%M %p" }}
+            {% if event.location %}&middot; {{ event.location }}{% endif %}
+        </p>
+        {% if event.description %}
+        <p class="uk-margin-small-bottom">{{ event.description }}</p>
+        {% endif %}
+
+        {% capture gcal_url %}https://calendar.google.com/calendar/render?action=TEMPLATE&text={{ event.title | url_encode }}&dates={{ event.date | date: "%Y%m%dT%H%M%S" }}/{{ event.end_date | date: "%Y%m%dT%H%M%S" }}{% if event.location %}&location={{ event.location | url_encode }}{% endif %}{% if event.description %}&details={{ event.description | url_encode }}{% endif %}{% endcapture %}
+        {% assign ics_url = event.url | absolute_url %}
+        {% assign webcal_url = ics_url | replace: "https://", "webcal://" | replace: "http://", "webcal://" %}
+
+        <div class="uk-inline">
+            <button class="uk-button uk-button-default" type="button">
+                Add to Calendar <span uk-icon="icon: triangle-down; ratio: 0.8"></span>
+            </button>
+            <div uk-dropdown="mode: click; pos: bottom-left">
+                <ul class="uk-nav uk-dropdown-nav">
+                    <li><a href="{{ gcal_url }}" target="_blank" rel="noopener">Google Calendar</a></li>
+                    <li><a href="{{ webcal_url }}">Apple Calendar</a></li>
+                    <li><a href="{{ ics_url }}" download>Outlook / Other (.ics)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>

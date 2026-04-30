@@ -64,3 +64,75 @@ collections:
         name: "layout"
         widget: "hidden"
         default: "post"
+
+  - name: "events"
+    label: "Events"
+    label_singular: "Event"
+    folder: "_events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: 'e.g. "Edgie''s Veggies at St. Paul Farmers'' Market"'
+
+      - label: "Start Date & Time"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DDTHH:mm:ss"
+        date_format: "MMMM D, YYYY"
+        time_format: "h:mm A"
+        default: "{{now}}"
+        hint: "All times are Central Time."
+
+      - label: "End Date & Time"
+        name: "end_date"
+        widget: "datetime"
+        format: "YYYY-MM-DDTHH:mm:ss"
+        date_format: "MMMM D, YYYY"
+        time_format: "h:mm A"
+        hint: "All times are Central Time."
+
+      - label: "Location"
+        name: "location"
+        widget: "string"
+        required: false
+        hint: "Address or venue name."
+
+      - label: "Notes"
+        name: "description"
+        widget: "text"
+        required: false
+        hint: "Optional details shown on the website and included in the calendar event."
+
+      - label: "Recurring Event?"
+        name: "recurring"
+        widget: "boolean"
+        default: false
+
+      - label: "Repeat Frequency"
+        name: "frequency"
+        widget: "select"
+        options:
+          - { label: "Weekly", value: "weekly" }
+          - { label: "Every 2 Weeks", value: "biweekly" }
+          - { label: "Monthly", value: "monthly" }
+        required: false
+        hint: "Only used if Recurring Event is checked."
+
+      - label: "Repeat Until"
+        name: "recurrence_end"
+        widget: "datetime"
+        format: "YYYY-MM-DDTHH:mm:ss"
+        date_format: "MMMM D, YYYY"
+        time_format: "h:mm A"
+        required: false
+        hint: "Leave blank to repeat indefinitely."
+
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "ical"

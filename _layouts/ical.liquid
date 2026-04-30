@@ -1,0 +1,18 @@
+---
+---
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Edgie's Veggies//Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:{{ page.slug }}@edgiesveggies.com
+DTSTAMP:{{ site.time | date: "%Y%m%dT%H%M%SZ" }}
+DTSTART;TZID=America/Chicago:{{ page.date | date: "%Y%m%dT%H%M%S" }}
+DTEND;TZID=America/Chicago:{{ page.end_date | date: "%Y%m%dT%H%M%S" }}
+SUMMARY:{{ page.title }}{% if page.location %}
+LOCATION:{{ page.location }}{% endif %}{% if page.description %}
+DESCRIPTION:{{ page.description | strip_newlines }}{% endif %}{% if page.recurring %}
+RRULE:FREQ={% if page.frequency == "biweekly" %}WEEKLY;INTERVAL=2{% else %}{{ page.frequency | upcase }}{% endif %}{% if page.recurrence_end %};UNTIL={{ page.recurrence_end | date: "%Y%m%dT%H%M%S" }}{% endif %}{% endif %}
+END:VEVENT
+END:VCALENDAR

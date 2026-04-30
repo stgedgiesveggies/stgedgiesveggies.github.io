@@ -26,78 +26,8 @@ $form-focus-background: #fff;
   color: #000;
 }
 
-// 4. Import only the UIkit components this site uses.
-
-// Base
-@import "components/base";
-@import "theme/base";
-
-// Elements
-@import "components/heading";
-@import "theme/heading";
-@import "components/icon";
-@import "theme/icon";
-@import "components/form";
-@import "theme/form";
-@import "components/button";
-@import "theme/button";
-
-// Layout
-@import "components/container";
-@import "theme/container";
-@import "components/tile";
-@import "theme/tile";
-@import "components/card";
-@import "theme/card";
-
-// Modal
-@import "components/animation";
-@import "theme/animation";
-@import "components/close";
-@import "theme/close";
-@import "components/overlay";
-@import "theme/overlay";
-@import "components/modal";
-@import "theme/modal";
-
-// Sticky
-@import "components/sticky";
-@import "theme/sticky";
-
-// Grid + slideshow
-@import "components/grid";
-@import "theme/grid";
-@import "components/slideshow";
-@import "components/slidenav";
-@import "theme/slidenav";
-@import "components/dotnav";
-@import "theme/dotnav";
-
-// Utilities
-@import "components/background";
-@import "components/width";
-@import "theme/width";
-@import "components/height";
-@import "theme/height";
-@import "components/text";
-@import "theme/text";
-@import "components/cover";
-@import "components/align";
-@import "theme/align";
-@import "components/utility";
-@import "theme/utility";
-@import "components/flex";
-@import "components/margin";
-@import "theme/margin";
-@import "components/padding";
-@import "theme/padding";
-@import "components/position";
-@import "theme/position";
-@import "components/transition";
-@import "theme/transition";
-@import "components/visibility";
-@import "components/inverse";
-@import "theme/inverse";
+// 4. Import all UIkit components and theme.
+@import "uikit-theme";
 
 .edgie-border {
   border: 1px $global-link-color solid;

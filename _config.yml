@@ -34,6 +34,8 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
+host: 0.0.0.0
+
 sass:
   style: compressed
   load_paths:
@@ -42,6 +44,20 @@ sass:
     - import
     - color-functions
     - global-builtin
+
+future: true
+
+collections:
+  events:
+    output: true
+    permalink: /events/:name.ics
+
+defaults:
+  - scope:
+      path: ""
+      type: "events"
+    values:
+      permalink: /events/:name.ics
 
 exclude:
   - node_modules/
