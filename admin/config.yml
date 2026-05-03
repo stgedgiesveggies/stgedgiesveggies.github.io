@@ -1,3 +1,5 @@
+---
+---
 backend:
   name: github
   repo: jasunde/edgies-veggies
@@ -8,8 +10,8 @@ backend:
 media_folder: "assets/images/posts"
 public_folder: "/assets/images/posts"
 
-site_url: "https://edgiesveggies.com"
-display_url: "https://edgiesveggies.com"
+site_url: "{{ site.url }}"
+display_url: "{{ site.url }}"
 logo_url: "/assets/images/lettuce-cropped-web.jpeg"
 
 publish_mode: simple

@@ -1,5 +1,5 @@
 [build]
-  command = "npm install && npm run process-images && npm run copy-assets && bundle exec jekyll build"
+  command = "npm install && npm run process-images && npm run copy-assets && printf 'url: %s\\nbaseurl: \"\"\\n' \"$URL\" > _config_url_override.yml && bundle exec jekyll build --config _config.yml,_config_url_override.yml"
   publish = "_site"
 
 [build.environment]
