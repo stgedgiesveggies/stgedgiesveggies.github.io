@@ -138,3 +138,160 @@ collections:
         name: "layout"
         widget: "hidden"
         default: "ical"
+
+  - name: "veggies"
+    label: "Veggies"
+    label_singular: "Veggie"
+    folder: "_veggies"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - label: "Name"
+        name: "title"
+        widget: "string"
+        hint: 'e.g. "Watermelon Radish"'
+
+      - label: "In Season (show on home page)"
+        name: "in_season"
+        widget: "boolean"
+        default: true
+
+      - label: "Featured (hero on home page)"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Only one veggie should be featured at a time."
+
+      - label: "Display Order"
+        name: "display_order"
+        widget: "number"
+        default: 99
+        hint: "Lower numbers appear first in the list."
+
+      - label: "Price"
+        name: "price"
+        widget: "string"
+        required: false
+        hint: 'e.g. "$3.50/bunch"'
+
+      - label: "Short Note"
+        name: "note"
+        widget: "string"
+        required: false
+        hint: "One line shown in the home page list, e.g. \"Crisp, mild, peppery rings\""
+
+      - label: "Hero Blurb"
+        name: "hero_blurb"
+        widget: "string"
+        required: false
+        hint: "Short description shown in the home page hero (1–2 sentences)."
+
+      - label: "About"
+        name: "blurb"
+        widget: "text"
+        required: false
+        hint: "Longer description shown on the veggie page."
+
+      - label: "Photo"
+        name: "cover_image"
+        widget: "image"
+        required: false
+        hint: "Main photo for the veggie page and home page hero."
+
+      - label: "Flavor"
+        name: "flavor"
+        widget: "string"
+        required: false
+        hint: 'e.g. "Mild, peppery"'
+
+      - label: "Texture"
+        name: "texture"
+        widget: "string"
+        required: false
+        hint: 'e.g. "Crisp, juicy"'
+
+      - label: "Season"
+        name: "season"
+        widget: "string"
+        required: false
+        hint: 'e.g. "Spring & Fall"'
+
+      - label: "Pairs With"
+        name: "pairs_with"
+        widget: "string"
+        required: false
+        hint: 'e.g. "Sesame · Citrus · Miso · Goat cheese"'
+
+      - label: "Thumb Gradient"
+        name: "thumb_gradient"
+        widget: "string"
+        required: false
+        hint: 'CSS gradient for the home page thumbnail, e.g. "linear-gradient(135deg,#cf0089,#f5d0e0)"'
+
+      - label: "Thumb Emoji"
+        name: "thumb_emoji"
+        widget: "string"
+        required: false
+        hint: "Optional emoji for the thumbnail (e.g. 🥬)"
+
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "veggie"
+
+  - name: "recipes"
+    label: "Recipes"
+    label_singular: "Recipe"
+    folder: "_recipes"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: 'e.g. "Shaved Radish Salad with Sesame & Citrus"'
+
+      - label: "Veggies"
+        name: "veggies"
+        widget: "list"
+        hint: "Which veggie pages should this recipe appear on? Enter the slug of each veggie (e.g. watermelon-radish). One per line."
+
+      - label: "Time"
+        name: "time"
+        widget: "string"
+        required: false
+        hint: 'e.g. "10 min" or "30 min + overnight"'
+
+      - label: "Serves"
+        name: "serves"
+        widget: "string"
+        required: false
+        hint: 'e.g. "Serves 2" or "Makes 1 jar"'
+
+      - label: "Difficulty"
+        name: "difficulty"
+        widget: "select"
+        required: false
+        options:
+          - "Easy"
+          - "Medium"
+          - "Hard"
+
+      - label: "Photo"
+        name: "cover_image"
+        widget: "image"
+        required: false
+
+      - label: "Ingredients"
+        name: "ingredients"
+        widget: "list"
+        hint: "One ingredient per line (e.g. \"3 watermelon radishes, thinly sliced\")."
+
+      - label: "Steps"
+        name: "steps"
+        widget: "list"
+        hint: "One step per item."

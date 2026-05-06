@@ -630,3 +630,257 @@ $form-focus-background: #fff;
   font-size: 13px;
   color: #887a5e;
 }
+
+/* ─── Veggie Page Layout ─── */
+
+.vp-hero {
+  overflow: hidden;
+  max-height: 420px;
+}
+
+.vp-hero-img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.vp-content {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 32px 20px 0;
+}
+
+.vp-heading {
+  font-weight: 900;
+  font-size: clamp(44px, 10vw, 72px);
+  color: var(--hp-pink);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  text-shadow: 3px 3px 0 var(--hp-yellow);
+  margin-bottom: 20px;
+}
+
+.vp-teal-bar {
+  width: 48px;
+  height: 4px;
+  background: var(--hp-teal);
+  border-radius: 2px;
+  margin-bottom: 24px;
+}
+
+.vp-blurb {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--hp-ink);
+  margin-bottom: 18px;
+}
+
+.vp-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.vp-chip {
+  border: 1.5px solid #e0d5be;
+  border-radius: 20px;
+  padding: 6px 14px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.vp-chip-label {
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--hp-teal);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.vp-chip-value {
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--hp-ink);
+}
+
+/* ─── Recipe list ─── */
+
+.vp-recipes-wrap {
+  margin-top: 8px;
+}
+
+.vp-recipes-heading {
+  font-weight: 900;
+  font-size: 32px;
+  color: var(--hp-ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.vp-recipe {
+  border-top: 2px solid #e8dfc8;
+  padding-top: 28px;
+  margin-top: 4px;
+}
+
+.vp-recipe > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+
+  &::-webkit-details-marker { display: none; }
+}
+
+.vp-recipe-thumb {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: repeating-linear-gradient(45deg, #e8dfc8 0px, #e8dfc8 1px, #f2ebda 1px, #f2ebda 14px);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.vp-recipe-info {
+  flex: 1;
+}
+
+.vp-recipe-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.vp-meta-chip {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--hp-teal);
+  background: rgba(0,175,149,0.08);
+  border-radius: 20px;
+  padding: 3px 10px;
+  letter-spacing: 0.04em;
+}
+
+.vp-recipe-title {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--hp-ink);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.vp-toggle-closed,
+.vp-toggle-open {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--hp-pink);
+  letter-spacing: 0.03em;
+}
+
+.vp-toggle-open { display: none; }
+
+.vp-recipe[open] .vp-toggle-open { display: inline; }
+.vp-recipe[open] .vp-toggle-closed { display: none; }
+
+/* ─── Recipe detail (expanded) ─── */
+
+.vp-recipe-body {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-bottom: 28px;
+}
+
+.vp-recipe-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vp-detail-label {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--hp-teal);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.vp-ingredient-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vp-ingredient-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--hp-ink);
+}
+
+.vp-dash {
+  color: var(--hp-pink);
+  font-weight: 700;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+.vp-step-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vp-step-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.vp-step-num {
+  font-weight: 900;
+  font-size: 13px;
+  color: var(--hp-cream);
+  background: var(--hp-pink);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.vp-step-text {
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--hp-ink);
+  line-height: 1.65;
+}
+
+.vp-newsletter {
+  margin-top: 60px;
+}

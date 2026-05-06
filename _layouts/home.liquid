@@ -4,6 +4,8 @@
 
 <body>
 
+  {% assign featured_veggie = site.veggies | where: "featured", true | first %}
+
   <!-- NAV -->
   <nav class="hp-nav">
     <a href="{{ '/' | relative_url }}" class="hp-wordmark">
@@ -16,6 +18,9 @@
   <!-- 1. FEATURED VEGGIE · full-bleed hero -->
   <section class="hp-hero">
     <div class="hp-hero-img" aria-hidden="true">
+      {% if featured_veggie and featured_veggie.cover_image %}
+      <img src="{{ featured_veggie.cover_image | relative_url }}" alt="" fetchpriority="high">
+      {% else %}
       <picture>
         <source type="image/webp"
           srcset="{{ '/assets/images/home-slides/radishes-750.webp' | relative_url }} 750w,
@@ -24,6 +29,7 @@
         <img src="{{ '/assets/images/home-slides/radishes.jpeg' | relative_url }}"
           alt="" fetchpriority="high">
       </picture>
+      {% endif %}
     </div>
 
     <div class="hp-hero-badge">
@@ -32,6 +38,18 @@
 
     <div class="hp-hero-content">
       <div class="hp-hero-eyebrow">Veggie of the week</div>
+      {% if featured_veggie %}
+      <h1 class="hp-hero-title">{{ featured_veggie.title | replace: " ", "<br>" }}</h1>
+      <p class="hp-hero-blurb">{{ featured_veggie.hero_blurb }}</p>
+      <div class="hp-hero-ctas">
+        <a href="{{ featured_veggie.url | relative_url }}" class="hp-btn hp-btn-primary">
+          <span>See recipes</span> <span>→</span>
+        </a>
+        <a href="#all-veggies" class="hp-btn hp-btn-outline">
+          <span>See all veggies</span> <span>↓</span>
+        </a>
+      </div>
+      {% else %}
       <h1 class="hp-hero-title">Watermelon<br>Radish</h1>
       <p class="hp-hero-blurb">
         Plain on the outside, fireworks on the inside. Slice thin to see the rings — mild, crisp, just a whisper of pepper.
@@ -44,6 +62,7 @@
           <span>See all veggies</span> <span>↓</span>
         </a>
       </div>
+      {% endif %}
     </div>
   </section>
 
@@ -87,6 +106,7 @@
   {% endif %}
 
   <!-- 4. ALSO AT THE STALL · index -->
+  {% assign in_season_veggies = site.veggies | where: "in_season", true | sort: "display_order" %}
   <section id="all-veggies" class="hp-index">
     <div class="hp-index-inner">
       <div class="hp-index-head">
@@ -94,93 +114,27 @@
           <div class="hp-index-eyebrow">[ also at the stall ]</div>
           <div class="hp-index-title">This Saturday</div>
         </div>
-        <div class="hp-index-count">12 in season</div>
+        {% if in_season_veggies.size > 0 %}
+        <div class="hp-index-count">{{ in_season_veggies.size }} in season</div>
+        {% endif %}
       </div>
 
-      <a href="{{ '/updates/' | relative_url }}" class="hp-veggie-row">
-        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#cf0089,#f5d0e0)">
-          <svg viewBox="0 0 40 40" style="width:100%;height:100%;display:block" aria-hidden="true"><circle cx="20" cy="24" r="13" fill="#fff" opacity="0.3"/><circle cx="20" cy="24" r="7" fill="#fff" opacity="0.5"/><circle cx="20" cy="24" r="3" fill="#fff" opacity="0.7"/></svg>
+      {% for veggie in in_season_veggies %}
+      <a href="{{ veggie.url | relative_url }}" class="hp-veggie-row">
+        <div class="hp-veggie-thumb" {% if veggie.thumb_gradient %}style="background:{{ veggie.thumb_gradient }}"{% endif %}>
+          {% if veggie.thumb_emoji %}{{ veggie.thumb_emoji }}{% endif %}
         </div>
         <div class="hp-veggie-info">
-          <div class="hp-veggie-name">Watermelon Radish</div>
-          <div class="hp-veggie-note">Crisp, mild, peppery rings</div>
+          <div class="hp-veggie-name">{{ veggie.title }}</div>
+          {% if veggie.note %}<div class="hp-veggie-note">{{ veggie.note }}</div>{% endif %}
         </div>
-        <div class="hp-veggie-price">$3.50</div>
+        {% if veggie.price %}<div class="hp-veggie-price">{{ veggie.price }}</div>{% endif %}
         <div class="hp-veggie-arrow">→</div>
       </a>
-
-      <div class="hp-veggie-row">
-        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#7ab550,#c9e0a8)">🥬</div>
-        <div class="hp-veggie-info">
-          <div class="hp-veggie-name">Butterhead Lettuce</div>
-          <div class="hp-veggie-note">Soft heads, just-picked</div>
-        </div>
-        <div class="hp-veggie-price">$4.00</div>
-        <div class="hp-veggie-arrow">→</div>
-      </div>
-
-      <div class="hp-veggie-row">
-        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#5ca85a,#a8d0a0)">🌱</div>
-        <div class="hp-veggie-info">
-          <div class="hp-veggie-name">Sugar Snap Peas</div>
-          <div class="hp-veggie-note">First of the season — sweet, crunchy</div>
-        </div>
-        <div class="hp-veggie-price">$5.00</div>
-        <div class="hp-veggie-arrow">→</div>
-      </div>
-
-      <div class="hp-veggie-row">
-        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#d04a4a,#f0c098,#7ab550)">🌈</div>
-        <div class="hp-veggie-info">
-          <div class="hp-veggie-name">Rainbow Chard</div>
-          <div class="hp-veggie-note">Last of the spring crop</div>
-        </div>
-        <div class="hp-veggie-price">$3.00</div>
-        <div class="hp-veggie-arrow">→</div>
-      </div>
-
-      <div class="hp-veggie-row">
-        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#9bc060,#d8e8b8)">🥒</div>
-        <div class="hp-veggie-info">
-          <div class="hp-veggie-name">Asparagus</div>
-          <div class="hp-veggie-note">Pencil-thin, snap-fresh</div>
-        </div>
-        <div class="hp-veggie-price">$6.00</div>
-        <div class="hp-veggie-arrow">→</div>
-      </div>
-
-      <div class="hp-veggie-row">
-        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#d04a4a,#f8b890)">🥕</div>
-        <div class="hp-veggie-info">
-          <div class="hp-veggie-name">Baby Carrots</div>
-          <div class="hp-veggie-note">Sweet, tops still on</div>
-        </div>
-        <div class="hp-veggie-price">$4.50</div>
-        <div class="hp-veggie-arrow">→</div>
-      </div>
-
-      <div class="hp-veggie-row">
-        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#7e5fa8,#c0a8d8)">🟣</div>
-        <div class="hp-veggie-info">
-          <div class="hp-veggie-name">Purple Top Turnips</div>
-          <div class="hp-veggie-note">Tender, mild, great roasted</div>
-        </div>
-        <div class="hp-veggie-price">$3.00</div>
-        <div class="hp-veggie-arrow">→</div>
-      </div>
-
-      <div class="hp-veggie-row">
-        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#5ca85a,#a0d09a)">🌿</div>
-        <div class="hp-veggie-info">
-          <div class="hp-veggie-name">Spring Garlic</div>
-          <div class="hp-veggie-note">Mild, just-pulled — green tops included</div>
-        </div>
-        <div class="hp-veggie-price">$2.50</div>
-        <div class="hp-veggie-arrow">→</div>
-      </div>
+      {% endfor %}
 
       <div class="hp-index-footer">
-        <a href="{{ '/updates/' | relative_url }}">↓ See all updates from the farm</a>
+        <a href="{{ '/veggies/' | relative_url }}">↓ See all veggies</a>
       </div>
     </div>
   </section>

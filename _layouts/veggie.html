@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include head.html %}
+<body>
+
+  <nav class="hp-nav">
+    <a href="{{ '/' | relative_url }}" class="hp-wordmark">
+      <span class="hp-wordmark-edgies">Edgie's</span>
+      <span class="hp-wordmark-veggies">Veggies</span>
+    </a>
+    <a href="{{ '/veggies/' | relative_url }}" class="hp-nav-link">← All veggies</a>
+  </nav>
+
+  {% if page.cover_image %}
+  <div class="vp-hero">
+    <img src="{{ page.cover_image | relative_url }}" alt="{{ page.title }}" class="vp-hero-img">
+  </div>
+  {% endif %}
+
+  <div class="vp-content">
+    <h1 class="vp-heading">{{ page.title }}</h1>
+    <div class="vp-teal-bar"></div>
+
+    {% if page.blurb %}
+    <p class="vp-blurb">{{ page.blurb }}</p>
+    {% endif %}
+
+    {% if page.flavor or page.texture or page.season or page.pairs_with %}
+    <div class="vp-chips">
+      {% if page.flavor %}
+      <div class="vp-chip">
+        <span class="vp-chip-label">Flavor</span>
+        <span class="vp-chip-value">{{ page.flavor }}</span>
+      </div>
+      {% endif %}
+      {% if page.texture %}
+      <div class="vp-chip">
+        <span class="vp-chip-label">Texture</span>
+        <span class="vp-chip-value">{{ page.texture }}</span>
+      </div>
+      {% endif %}
+      {% if page.season %}
+      <div class="vp-chip">
+        <span class="vp-chip-label">Season</span>
+        <span class="vp-chip-value">{{ page.season }}</span>
+      </div>
+      {% endif %}
+      {% if page.pairs_with %}
+      <div class="vp-chip">
+        <span class="vp-chip-label">Pairs with</span>
+        <span class="vp-chip-value">{{ page.pairs_with }}</span>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+
+  {% assign veggie_recipes = site.recipes | where_exp: "r", "r.veggies contains page.slug" %}
+  {% if veggie_recipes.size > 0 %}
+  <div class="vp-recipes-wrap">
+    <div class="vp-content">
+      <h2 class="vp-recipes-heading">Recipes</h2>
+      {% for recipe in veggie_recipes %}
+      <details class="vp-recipe">
+        <summary class="vp-recipe-summary">
+          <div class="vp-recipe-thumb">
+            {% if recipe.cover_image %}
+            <img src="{{ recipe.cover_image | relative_url }}" alt="{{ recipe.title }}" loading="lazy">
+            {% endif %}
+          </div>
+          <div class="vp-recipe-info">
+            <div class="vp-recipe-meta">
+              {% if recipe.time %}<span class="vp-meta-chip">{{ recipe.time }}</span>{% endif %}
+              {% if recipe.serves %}<span class="vp-meta-chip">{{ recipe.serves }}</span>{% endif %}
+              {% if recipe.difficulty %}<span class="vp-meta-chip">{{ recipe.difficulty }}</span>{% endif %}
+            </div>
+            <h3 class="vp-recipe-title">{{ recipe.title }}</h3>
+            <span class="vp-toggle-closed">↓ See recipe</span>
+            <span class="vp-toggle-open">↑ Hide recipe</span>
+          </div>
+        </summary>
+        <div class="vp-recipe-body">
+          {% if recipe.ingredients.size > 0 %}
+          <div class="vp-recipe-detail">
+            <div class="vp-detail-label">Ingredients</div>
+            <ul class="vp-ingredient-list">
+              {% for ing in recipe.ingredients %}
+              <li><span class="vp-dash">—</span><span>{{ ing }}</span></li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          {% if recipe.steps.size > 0 %}
+          <div class="vp-recipe-detail">
+            <div class="vp-detail-label">Method</div>
+            <ol class="vp-step-list">
+              {% for step in recipe.steps %}
+              <li>
+                <span class="vp-step-num">{{ forloop.index }}</span>
+                <span class="vp-step-text">{{ step }}</span>
+              </li>
+              {% endfor %}
+            </ol>
+          </div>
+          {% endif %}
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <section class="hp-newsletter vp-newsletter">
+    <div class="hp-newsletter-inner">
+      <h2 class="hp-newsletter-heading">Know what's coming before you arrive.</h2>
+      <p class="hp-newsletter-subtext">Get harvest updates every Friday — what's ready, what's almost gone, and what's just coming in.</p>
+      <form class="js-cm-form hp-newsletter-form"
+        action="https://www.createsend.com/t/subscribeerror?description="
+        method="post"
+        data-id="2BE4EF332AA2E32596E38B640E9056198AB1CE755310223F51B9B7A1A84ECCF0D5273ABBAB8D761069F57EC9F57688E765894B26C821D8708B348E851258F3F4">
+        <input type="email"
+          class="js-cm-email-input hp-newsletter-input"
+          name="cm-ydykkhy-ydykkhy"
+          placeholder="your@email.com"
+          autocomplete="email"
+          required>
+        <button type="submit" class="hp-newsletter-btn">Get updates</button>
+      </form>
+      <script async src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
+    </div>
+  </section>
+
+  <footer class="hp-footer">
+    <div class="hp-footer-wm">EDGIE'S VEGGIES</div>
+    <div class="hp-footer-meta">St. Paul Farmers' Market · Saturdays · edgiesveggies.com</div>
+  </footer>
+
+</body>
+</html>

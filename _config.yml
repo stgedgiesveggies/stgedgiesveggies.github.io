@@ -51,6 +51,11 @@ collections:
   events:
     output: true
     permalink: /events/:name.ics
+  veggies:
+    output: true
+    permalink: /veggies/:name/
+  recipes:
+    output: false
 
 defaults:
   - scope:
@@ -58,6 +63,11 @@ defaults:
       type: "events"
     values:
       permalink: /events/:name.ics
+  - scope:
+      path: ""
+      type: "veggies"
+    values:
+      layout: veggie
 
 exclude:
   - node_modules/

@@ -1,0 +1,38 @@
+---
+layout: default
+title: "All Veggies"
+description: "What Edgie's Veggies grows and sells at the St. Paul Farmers' Market."
+---
+<div style="max-width: 720px; margin: 2rem auto 4rem;">
+  <h1 class="uk-heading-small">All Veggies</h1>
+  <p class="uk-text-lead uk-margin-remove-top">What we're growing and selling at the market this season.</p>
+  <hr class="uk-divider-small">
+
+  {% assign veggies = site.veggies | sort: "display_order" %}
+  {% if veggies.size > 0 %}
+  <ul class="uk-list uk-list-divider uk-margin-medium-top">
+    {% for veggie in veggies %}
+    <li>
+      <a href="{{ veggie.url | relative_url }}" class="uk-link-reset">
+        <div class="uk-grid-small uk-flex-middle" uk-grid>
+          <div class="uk-width-expand">
+            <h2 class="uk-h3 uk-margin-remove-bottom" style="color: #cf0089;">{{ veggie.title }}</h2>
+            {% if veggie.note %}
+            <p class="uk-article-meta uk-margin-remove-top uk-margin-small-bottom">{{ veggie.note }}</p>
+            {% endif %}
+          </div>
+          {% if veggie.price %}
+          <div class="uk-width-auto">
+            <span style="font-weight: 900; color: #cf0089; font-size: 1.1rem;">{{ veggie.price }}</span>
+          </div>
+          {% endif %}
+          <div class="uk-width-auto uk-text-muted">→</div>
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="uk-text-muted uk-text-center uk-margin-large-top">Check back soon for this season's offerings!</p>
+  {% endif %}
+</div>
