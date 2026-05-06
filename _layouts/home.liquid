@@ -2,230 +2,253 @@
 <html lang="en">
 {% include head.html %}
 
-<body class="uk-text-center">
-    <div class="uk-container uk-container-xsmall">
+<body>
 
-        <div
-            class="uk-container uk-container-xsmall uk-padding-remove-left uk-padding-remove-right">
-            <div class="uk-cover-container uk-height-medium">
-                <picture>
-                    <source type="image/webp"
-                        srcset="{{ '/assets/images/lettuce-cropped-web-750.webp' | relative_url }} 750w,
-                                {{ '/assets/images/lettuce-cropped-web-1500.webp' | relative_url }} 1500w"
-                        sizes="(max-width: 750px) 100vw, 750px">
-                    <img src="{{ '/assets/images/lettuce-cropped-web.jpeg' | relative_url }}"
-                        alt="Beautiful Young Edgie's Veggies Lettuce covered in rain droplets"
-                        fetchpriority="high" uk-cover>
-                </picture>
-            </div>
-        </div>
+  <!-- NAV -->
+  <nav class="hp-nav">
+    <a href="{{ '/' | relative_url }}" class="hp-wordmark">
+      <span class="hp-wordmark-edgies">Edgie's</span>
+      <span class="hp-wordmark-veggies">Veggies</span>
+    </a>
+    <a href="#all-veggies" class="hp-nav-link">All veggies →</a>
+  </nav>
 
+  <!-- 1. FEATURED VEGGIE · full-bleed hero -->
+  <section class="hp-hero">
+    <div class="hp-hero-img" aria-hidden="true">
+      <picture>
+        <source type="image/webp"
+          srcset="{{ '/assets/images/home-slides/radishes-750.webp' | relative_url }} 750w,
+                  {{ '/assets/images/home-slides/radishes-1500.webp' | relative_url }} 1500w"
+          sizes="100vw">
+        <img src="{{ '/assets/images/home-slides/radishes.jpeg' | relative_url }}"
+          alt="" fetchpriority="high">
+      </picture>
+    </div>
 
+    <div class="hp-hero-badge">
+      <span>★</span> This week
+    </div>
+
+    <div class="hp-hero-content">
+      <div class="hp-hero-eyebrow">Veggie of the week</div>
+      <h1 class="hp-hero-title">Watermelon<br>Radish</h1>
+      <p class="hp-hero-blurb">
+        Plain on the outside, fireworks on the inside. Slice thin to see the rings — mild, crisp, just a whisper of pepper.
+      </p>
+      <div class="hp-hero-ctas">
+        <a href="{{ '/updates/' | relative_url }}" class="hp-btn hp-btn-primary">
+          <span>See recipes</span> <span>→</span>
+        </a>
+        <a href="#all-veggies" class="hp-btn hp-btn-outline">
+          <span>See all veggies</span> <span>↓</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. STALL INFO -->
+  <section class="hp-stall-bar">
+    <div class="hp-stall-inner">
+      <div class="hp-stall-row">
         <div>
-            <div
-                class="uk-heading-xlarge uk-text-bolder uk-margin-small-bottom logo">
-                EDGIE'S VEGGIES</div>
-            <p class="uk-text-light uk-margin-remove-top logo-sub-heading">
-                SALAD GREENS GROWN IN ST. PAUL SOIL</p>
+          <div class="hp-stall-label">Find us</div>
+          <div class="hp-stall-where">St. Paul Farmers' Market</div>
+          <div class="hp-stall-when">Saturdays · stall #14, east end</div>
         </div>
-
-        <div class="uk-container uk-container-xsmall">
-            <div
-                class="uk-tile uk-tile-default uk-margin-medium-bottom edgie-border">
-                <p>Edgie's Veggies is a small scale market garden in St. Paul,
-                    MN.
-                    We grow absolutely delicious salad greens with a freshness
-                    that
-                    lasts using principles and methods that embrace the soil's
-                    biological systems.
-                </p>
-                <p class="uk-margin-large-bottom">Find our greens on Saturdays
-                    at<br />
-                    <span class="uk-text-large">St. Paul Farmers' Market, 290
-                        5th
-                        St.
-                        East, St. Paul, MN 55101</span>
-                </p>
-
-                <div>
-                    <h1 class="uk-margin-small-bottom">Get our farm newsletter!</h1>
-                    <div>
-                        <div>
-                            <p>We'll send you weekly harvest updates so you can plan
-                                your menu.
-                            </p>
-                        </div>
-                        <form
-                            class="js-cm-form uk-form-stacked uk-text-left uk-align-center uk-width-2-3@s"
-                            id="subForm"
-                            action="https://www.createsend.com/t/subscribeerror?description="
-                            method="post"
-                            data-id="2BE4EF332AA2E32596E38B640E9056198AB1CE755310223F51B9B7A1A84ECCF0D5273ABBAB8D761069F57EC9F57688E765894B26C821D8708B348E851258F3F4">
-                            <div class="uk-margin">
-                                <label class="uk-form-label">Name</label>
-                                <input aria-label="Name"
-                                    class="uk-input edgie-secondary-border"
-                                    id="fieldName" maxlength="200" name="cm-name">
-                            </div>
-                            <div class="uk-margin">
-                                <label class="uk-form-label">Email</label>
-                                <input autocomplete="Email" aria-label="Email"
-                                    class="js-cm-email-input qa-input-email uk-input edgie-secondary-border"
-                                    id="fieldEmail" maxlength="200"
-                                    name="cm-ydykkhy-ydykkhy" required=""
-                                    type="email">
-                            </div>
-                            <div class="uk-margin">
-                                <button type="submit"
-                                    class="uk-button uk-button-secondary uk-align-center">Subscribe</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <script async src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
-
-            </div>
-        </div>
-
-
-        {% assign latest_post = site.posts.first %}
-        {% if latest_post %}
-        <div id="latest-post-card"
-            class="uk-container uk-container-xsmall uk-margin-medium-bottom">
-            <div class="uk-tile uk-tile-default edgie-border">
-                <p
-                    class="uk-text-uppercase uk-text-small uk-text-muted uk-margin-remove-bottom">
-                    Latest from the Farm</p>
-                {% if latest_post.cover_image %}
-                <div class="uk-margin-small-top">
-                    <img src="{{ latest_post.cover_image | relative_url }}"
-                        alt="{{ latest_post.title }}" class="uk-width-1-1"
-                        style="max-height: 240px; object-fit: cover; border-radius: 4px;">
-                </div>
-                {% endif %}
-                <h2 class="uk-h3 uk-margin-small-top uk-margin-remove-bottom">
-                    <a href="{{ latest_post.url | relative_url }}"
-                        class="uk-link-reset">{{ latest_post.title }}</a>
-                </h2>
-                <p
-                    class="uk-article-meta uk-margin-remove-top uk-margin-small-bottom">
-                    {{ latest_post.date | date: "%B %-d, %Y" }}
-                </p>
-
-                {% comment %} <div id="home-sticky-sentinel"
-                    uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true;">
-
-                    <!-- Newsletter bottom banner -->
-                    <div style="height: 0; overflow: hidden;">
-                        <div uk-sticky="position: bottom">
-                            <div id="newsletter-banner"
-                                style="border-top: 1px #cf0089 solid; border-radius: 4px 4px 0 0;"
-                                class="uk-background-default uk-box-shadow-medium uk-padding-small uk-text-center uk-position-z-index">
-                                <span class="uk-text-emphasis">Get farm
-                                    updates</span>
-                                <a href="#newsletter-modal"
-                                    class="uk-button uk-button-secondary uk-margin-small-left"
-                                    uk-toggle>Subscribe</a>
-                                <button id="newsletter-banner-close"
-                                    class="uk-margin-small-left uk-close"
-                                    type="button" uk-close></button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div> {% endcomment %}
-                <div class="uk-text-left uk-margin-small-top">{{
-                    latest_post.content
-                    }}</div>
-                {% if site.posts.size > 1 %}
-                <p class="uk-margin-small-top">
-                    <a href="{{ '/updates/' | relative_url }}"
-                        class="uk-button uk-button-default">
-                        Read past updates &rarr;
-                    </a>
-                </p>
-                {% endif %}
-            </div>
-
-        </div>
-        {% endif %}
-
-        <div
-            class="uk-container uk-container-xsmall uk-margin-medium-bottom uk-padding-remove-left uk-padding-remove-right">
-            <div class="uk-position-relative uk-visible-toggle uk-light"
-                tabindex="-1" uk-slideshow="autoplay: true; ratio: 3:2">
-                <ul class="uk-slideshow-items">
-                    {% for image in site.static_files %}
-                    {% if image.path contains 'images/home-slides/' and
-                    image.extname == '.jpeg' %}
-                    {% increment slider_counter %}
-                    <li>
-                        <picture>
-                            <source type="image/webp"
-                                srcset="{{ image.path | replace: '.jpeg', '-750.webp' | relative_url }} 750w,
-                                        {{ image.path | replace: '.jpeg', '-1500.webp' | relative_url }} 1500w"
-                                sizes="(max-width: 750px) 100vw, 750px">
-                            <img src="{{ image.path | relative_url }}" alt=""
-                                uk-cover loading="lazy">
-                        </picture>
-                    </li>
-                    {% endif %}
-                    {% endfor %}
-                    {% decrement slider_counter %}
-                </ul>
-
-                <a class="uk-position-center-left uk-position-small" href="#"
-                    uk-slidenav-previous uk-slideshow-item="previous"></a>
-                <a class="uk-position-center-right uk-position-small" href="#"
-                    uk-slidenav-next uk-slideshow-item="next"></a>
-
-                <div class="uk-position-bottom-center uk-position-small">
-                    <ul class="uk-dotnav">
-                        {% for i in (0..slider_counter) %}
-                        <li uk-slideshow-item="{{ i }}"><a href="#">Item {{ i
-                                }}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="uk-container uk-container-xsmall uk-margin-medium">
-            <div class="uk-child-width-1-2@s uk-grid-medium uk-grid-match uk-grid"
-                uk-grid>
-                <div class="uk-first-column">
-                    <div
-                        class="uk-card uk-card-default uk-card-body edgie-border">
-                        <h3 class="uk-text-large">CONTACT US</h3>
-                        <a
-                            href="mailto:edgie@edgiesveggies">edgie@edgiesveggies.com</a>
-                    </div>
-                </div>
-                <div>
-                    <div
-                        class="uk-card uk-card-default uk-card-body edgie-border">
-                        <h3>Follow Us</h3>
-                        <a href="https://www.instagram.com/edgiesveggies/"
-                            uk-icon="icon: instagram; ratio: 2;"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <p class="uk-text-center uk-text-small">&copy; Edgie's Veggies</p>
-
+        <div class="hp-hours-pill">8a–1p</div>
+      </div>
+      <div class="hp-stall-ctas">
+        <a href="https://maps.google.com/?q=St+Paul+Farmers+Market,+290+5th+St+E,+Saint+Paul,+MN+55101"
+          target="_blank" rel="noopener" class="hp-btn hp-btn-stall-primary">
+          <span>📍</span> <span>Get directions</span>
+        </a>
+        <button onclick="downloadIcs()" class="hp-btn hp-btn-stall-outline">
+          <span>📅</span> <span>Add to calendar</span>
+        </button>
+      </div>
     </div>
+  </section>
 
-    <!-- Newsletter modal (homepage) -->
-    <div id="newsletter-modal" uk-modal>
-        <div class="uk-modal-dialog uk-modal-body uk-text-center">
-            <button class="uk-modal-close-outside" type="button"
-                uk-close></button>
-            <h2 class="uk-modal-title">Get our farm newsletter!</h2>
-            {% include newsletter-form.html %}
-        </div>
+  <!-- 3. EDITORIAL · From the field -->
+  {% assign latest_post = site.posts.first %}
+  {% if latest_post %}
+  <section class="hp-editorial">
+    <div class="hp-ed-eyebrow">From the field · {{ latest_post.date | date: "%B %-d" }}</div>
+    <h2 class="hp-ed-title">{{ latest_post.title }}</h2>
+    <div class="hp-ed-body">
+      {{ latest_post.content }}
     </div>
+    <div class="hp-signoff">
+      <div class="hp-signoff-name">Edgie</div>
+      <div class="hp-signoff-role">Grower · St. Paul, MN</div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- 4. ALSO AT THE STALL · index -->
+  <section id="all-veggies" class="hp-index">
+    <div class="hp-index-inner">
+      <div class="hp-index-head">
+        <div class="hp-index-head-left">
+          <div class="hp-index-eyebrow">[ also at the stall ]</div>
+          <div class="hp-index-title">This Saturday</div>
+        </div>
+        <div class="hp-index-count">12 in season</div>
+      </div>
+
+      <a href="{{ '/updates/' | relative_url }}" class="hp-veggie-row">
+        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#cf0089,#f5d0e0)">
+          <svg viewBox="0 0 40 40" style="width:100%;height:100%;display:block" aria-hidden="true"><circle cx="20" cy="24" r="13" fill="#fff" opacity="0.3"/><circle cx="20" cy="24" r="7" fill="#fff" opacity="0.5"/><circle cx="20" cy="24" r="3" fill="#fff" opacity="0.7"/></svg>
+        </div>
+        <div class="hp-veggie-info">
+          <div class="hp-veggie-name">Watermelon Radish</div>
+          <div class="hp-veggie-note">Crisp, mild, peppery rings</div>
+        </div>
+        <div class="hp-veggie-price">$3.50</div>
+        <div class="hp-veggie-arrow">→</div>
+      </a>
+
+      <div class="hp-veggie-row">
+        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#7ab550,#c9e0a8)">🥬</div>
+        <div class="hp-veggie-info">
+          <div class="hp-veggie-name">Butterhead Lettuce</div>
+          <div class="hp-veggie-note">Soft heads, just-picked</div>
+        </div>
+        <div class="hp-veggie-price">$4.00</div>
+        <div class="hp-veggie-arrow">→</div>
+      </div>
+
+      <div class="hp-veggie-row">
+        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#5ca85a,#a8d0a0)">🌱</div>
+        <div class="hp-veggie-info">
+          <div class="hp-veggie-name">Sugar Snap Peas</div>
+          <div class="hp-veggie-note">First of the season — sweet, crunchy</div>
+        </div>
+        <div class="hp-veggie-price">$5.00</div>
+        <div class="hp-veggie-arrow">→</div>
+      </div>
+
+      <div class="hp-veggie-row">
+        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#d04a4a,#f0c098,#7ab550)">🌈</div>
+        <div class="hp-veggie-info">
+          <div class="hp-veggie-name">Rainbow Chard</div>
+          <div class="hp-veggie-note">Last of the spring crop</div>
+        </div>
+        <div class="hp-veggie-price">$3.00</div>
+        <div class="hp-veggie-arrow">→</div>
+      </div>
+
+      <div class="hp-veggie-row">
+        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#9bc060,#d8e8b8)">🥒</div>
+        <div class="hp-veggie-info">
+          <div class="hp-veggie-name">Asparagus</div>
+          <div class="hp-veggie-note">Pencil-thin, snap-fresh</div>
+        </div>
+        <div class="hp-veggie-price">$6.00</div>
+        <div class="hp-veggie-arrow">→</div>
+      </div>
+
+      <div class="hp-veggie-row">
+        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#d04a4a,#f8b890)">🥕</div>
+        <div class="hp-veggie-info">
+          <div class="hp-veggie-name">Baby Carrots</div>
+          <div class="hp-veggie-note">Sweet, tops still on</div>
+        </div>
+        <div class="hp-veggie-price">$4.50</div>
+        <div class="hp-veggie-arrow">→</div>
+      </div>
+
+      <div class="hp-veggie-row">
+        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#7e5fa8,#c0a8d8)">🟣</div>
+        <div class="hp-veggie-info">
+          <div class="hp-veggie-name">Purple Top Turnips</div>
+          <div class="hp-veggie-note">Tender, mild, great roasted</div>
+        </div>
+        <div class="hp-veggie-price">$3.00</div>
+        <div class="hp-veggie-arrow">→</div>
+      </div>
+
+      <div class="hp-veggie-row">
+        <div class="hp-veggie-thumb" style="background:linear-gradient(135deg,#5ca85a,#a0d09a)">🌿</div>
+        <div class="hp-veggie-info">
+          <div class="hp-veggie-name">Spring Garlic</div>
+          <div class="hp-veggie-note">Mild, just-pulled — green tops included</div>
+        </div>
+        <div class="hp-veggie-price">$2.50</div>
+        <div class="hp-veggie-arrow">→</div>
+      </div>
+
+      <div class="hp-index-footer">
+        <a href="{{ '/updates/' | relative_url }}">↓ See all updates from the farm</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. NEWSLETTER -->
+  <section class="hp-newsletter">
+    <div class="hp-newsletter-inner">
+      <h2 class="hp-newsletter-heading">Know what's coming before you arrive.</h2>
+      <p class="hp-newsletter-subtext">Get harvest updates every Friday — what's ready, what's almost gone, and what's just coming in.</p>
+      <form class="js-cm-form hp-newsletter-form"
+        action="https://www.createsend.com/t/subscribeerror?description="
+        method="post"
+        data-id="2BE4EF332AA2E32596E38B640E9056198AB1CE755310223F51B9B7A1A84ECCF0D5273ABBAB8D761069F57EC9F57688E765894B26C821D8708B348E851258F3F4">
+        <input type="email"
+          class="js-cm-email-input hp-newsletter-input"
+          name="cm-ydykkhy-ydykkhy"
+          placeholder="your@email.com"
+          autocomplete="email"
+          required>
+        <button type="submit" class="hp-newsletter-btn">Get updates</button>
+      </form>
+      <script async src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
+    </div>
+  </section>
+
+  <!-- 6. FOOTER -->
+  <footer class="hp-footer">
+    <div class="hp-footer-wm">EDGIE'S VEGGIES</div>
+    <div class="hp-footer-meta">St. Paul Farmers' Market · Saturdays · edgiesveggies.com</div>
+  </footer>
+
+  <script>
+    function downloadIcs() {
+      const now = new Date();
+      const day = now.getDay();
+      const daysToSat = (6 - day + 7) % 7 || 7;
+      const sat = new Date(now);
+      sat.setDate(now.getDate() + daysToSat);
+      const yyyy = sat.getFullYear();
+      const mm = String(sat.getMonth() + 1).padStart(2, '0');
+      const dd = String(sat.getDate()).padStart(2, '0');
+      const dtStart = `${yyyy}${mm}${dd}T080000`;
+      const dtEnd   = `${yyyy}${mm}${dd}T130000`;
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Edgies Veggies//EN',
+        'BEGIN:VEVENT',
+        `UID:edgies-${yyyy}${mm}${dd}@edgiesveggies.com`,
+        `DTSTAMP:${dtStart}`,
+        `DTSTART:${dtStart}`,
+        `DTEND:${dtEnd}`,
+        "SUMMARY:Edgie's Veggies — Farmers' Market",
+        "LOCATION:St. Paul Farmers' Market, 290 5th St E, Saint Paul, MN 55101",
+        "DESCRIPTION:Stop by for this week's harvest. Stall #14, east end.",
+        'RRULE:FREQ=WEEKLY;BYDAY=SA',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+      const blob = new Blob([ics], { type: 'text/calendar' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'edgies-veggies-market.ics';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
 
 </body>
-
 </html>
