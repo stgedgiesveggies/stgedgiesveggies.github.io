@@ -1,38 +1,69 @@
 ---
-layout: default
+layout: site
 title: "All Veggies"
 description: "What Edgie's Veggies grows and sells at the St. Paul Farmers' Market."
 ---
-<div style="max-width: 720px; margin: 2rem auto 4rem;">
-  <h1 class="uk-heading-small">All Veggies</h1>
-  <p class="uk-text-lead uk-margin-remove-top">What we're growing and selling at the market this season.</p>
-  <hr class="uk-divider-small">
 
-  {% assign veggies = site.veggies | sort: "display_order" %}
-  {% if veggies.size > 0 %}
-  <ul class="uk-list uk-list-divider uk-margin-medium-top">
-    {% for veggie in veggies %}
-    <li>
-      <a href="{{ veggie.url | relative_url }}" class="uk-link-reset">
-        <div class="uk-grid-small uk-flex-middle" uk-grid>
-          <div class="uk-width-expand">
-            <h2 class="uk-h3 uk-margin-remove-bottom" style="color: #cf0089;">{{ veggie.title }}</h2>
-            {% if veggie.note %}
-            <p class="uk-article-meta uk-margin-remove-top uk-margin-small-bottom">{{ veggie.note }}</p>
-            {% endif %}
-          </div>
-          {% if veggie.price %}
-          <div class="uk-width-auto">
-            <span style="font-weight: 900; color: #cf0089; font-size: 1.1rem;">{{ veggie.price }}</span>
-          </div>
-          {% endif %}
-          <div class="uk-width-auto uk-text-muted">→</div>
-        </div>
-      </a>
-    </li>
+{% assign in_season = site.veggies | where: "in_season", true | sort: "display_order" %}
+{% assign coming_later = site.veggies | where: "in_season", false | sort: "display_order" %}
+
+<section class="vl-section">
+  <div class="vl-inner">
+    <div class="vl-head">
+      <div class="vl-head-left">
+        <div class="vl-eyebrow">[ at the stall now ]</div>
+        <h1 class="vl-title">In Season</h1>
+      </div>
+      {% if in_season.size > 0 %}
+      <div class="vl-count">{{ in_season.size }} in season</div>
+      {% endif %}
+    </div>
+
+    {% for veggie in in_season %}
+    <a href="{{ veggie.url | relative_url }}" class="hp-veggie-row">
+      <div class="hp-veggie-thumb" {% if veggie.thumb_gradient and veggie.thumb_image == nil %}style="background:{{ veggie.thumb_gradient }}"{% endif %}>
+        {% if veggie.thumb_image %}<img src="{{ veggie.thumb_image | relative_url }}" alt="{{ veggie.title }}">{% endif %}
+      </div>
+      <div class="hp-veggie-info">
+        <div class="hp-veggie-name">{{ veggie.title }}</div>
+        {% if veggie.note %}<div class="hp-veggie-note">{{ veggie.note }}</div>{% endif %}
+      </div>
+      {% if veggie.price %}<div class="hp-veggie-price">{{ veggie.price }}</div>{% endif %}
+      <div class="hp-veggie-arrow">→</div>
+    </a>
     {% endfor %}
-  </ul>
-  {% else %}
-  <p class="uk-text-muted uk-text-center uk-margin-large-top">Check back soon for this season's offerings!</p>
-  {% endif %}
-</div>
+
+    {% if in_season.size == 0 %}
+    <p class="vl-empty">Check back soon — the season is just getting started.</p>
+    {% endif %}
+  </div>
+</section>
+
+{% if coming_later.size > 0 %}
+<section class="vl-section vl-section-later">
+  <div class="vl-inner">
+    <div class="vl-head">
+      <div class="vl-head-left">
+        <div class="vl-eyebrow">[ not just yet ]</div>
+        <h2 class="vl-title">Still in the ground.</h2>
+      </div>
+      <div class="vl-count">{{ coming_later.size }} on the way</div>
+    </div>
+    <p class="vl-later-blurb">These crops are weeks away from harvest. Worth knowing about, worth waiting for — subscribe to hear when they're ready.</p>
+
+    {% for veggie in coming_later %}
+    <a href="{{ veggie.url | relative_url }}" class="hp-veggie-row vl-later-row">
+      <div class="hp-veggie-thumb vl-later-thumb" {% if veggie.thumb_gradient and veggie.thumb_image == nil %}style="background:{{ veggie.thumb_gradient }}"{% endif %}>
+        {% if veggie.thumb_image %}<img src="{{ veggie.thumb_image | relative_url }}" alt="{{ veggie.title }}">{% endif %}
+      </div>
+      <div class="hp-veggie-info">
+        <div class="hp-veggie-name">{{ veggie.title }}</div>
+        {% if veggie.note %}<div class="hp-veggie-note">{{ veggie.note }}</div>{% endif %}
+      </div>
+      {% if veggie.season %}<div class="vl-later-season">{{ veggie.season }}</div>{% endif %}
+      <div class="hp-veggie-arrow">→</div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

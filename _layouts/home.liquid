@@ -12,7 +12,7 @@
       <span class="hp-wordmark-edgies">Edgie's</span>
       <span class="hp-wordmark-veggies">Veggies</span>
     </a>
-    <a href="#all-veggies" class="hp-nav-link">All veggies →</a>
+    <a href="{{ '/veggies/' | relative_url }}" class="hp-nav-link">All veggies →</a>
   </nav>
 
   <!-- 1. FEATURED VEGGIE · full-bleed hero -->
@@ -39,18 +39,18 @@
     <div class="hp-hero-content">
       <div class="hp-hero-eyebrow">Veggie of the week</div>
       {% if featured_veggie %}
-      <h1 class="hp-hero-title">{{ featured_veggie.title | replace: " ", "<br>" }}</h1>
+      <h1 class="hp-hero-title"><span>{{ featured_veggie.title | replace: " ", "<br>" }}</span></h1>
       <p class="hp-hero-blurb">{{ featured_veggie.hero_blurb }}</p>
       <div class="hp-hero-ctas">
         <a href="{{ featured_veggie.url | relative_url }}" class="hp-btn hp-btn-primary">
           <span>See recipes</span> <span>→</span>
         </a>
         <a href="#all-veggies" class="hp-btn hp-btn-outline">
-          <span>See all veggies</span> <span>↓</span>
+          <span>Also at the stall</span> <span>↓</span>
         </a>
       </div>
       {% else %}
-      <h1 class="hp-hero-title">Watermelon<br>Radish</h1>
+      <h1 class="hp-hero-title"><span>Watermelon<br>Radish</span></h1>
       <p class="hp-hero-blurb">
         Plain on the outside, fireworks on the inside. Slice thin to see the rings — mild, crisp, just a whisper of pepper.
       </p>
@@ -59,7 +59,7 @@
           <span>See recipes</span> <span>→</span>
         </a>
         <a href="#all-veggies" class="hp-btn hp-btn-outline">
-          <span>See all veggies</span> <span>↓</span>
+          <span>Also at the stall</span> <span>↓</span>
         </a>
       </div>
       {% endif %}
@@ -73,15 +73,13 @@
         <div>
           <div class="hp-stall-label">Find us</div>
           <div class="hp-stall-where">St. Paul Farmers' Market</div>
-          <div class="hp-stall-when">Saturdays · stall #14, east end</div>
+          <div class="hp-stall-when">Saturdays · <span class="hp-hours-inline">8 am – 1 pm</span> · stall #14, east end</div>
         </div>
-        <div class="hp-hours-pill">8a–1p</div>
       </div>
       <div class="hp-stall-ctas">
-        <a href="https://maps.google.com/?q=St+Paul+Farmers+Market,+290+5th+St+E,+Saint+Paul,+MN+55101"
-          target="_blank" rel="noopener" class="hp-btn hp-btn-stall-primary">
+        <button onclick="getDirections()" class="hp-btn hp-btn-stall-primary">
           <span>📍</span> <span>Get directions</span>
-        </a>
+        </button>
         <button onclick="downloadIcs()" class="hp-btn hp-btn-stall-outline">
           <span>📅</span> <span>Add to calendar</span>
         </button>
@@ -167,6 +165,15 @@
   </footer>
 
   <script>
+    function getDirections() {
+      const isApple = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
+      const query = 'St+Paul+Farmers+Market,+290+5th+St+E,+Saint+Paul,+MN+55101';
+      const url = isApple
+        ? 'https://maps.apple.com/?q=' + query
+        : 'https://maps.google.com/?q=' + query;
+      window.open(url, '_blank', 'noopener');
+    }
+
     function downloadIcs() {
       const now = new Date();
       const day = now.getDay();
