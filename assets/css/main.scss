@@ -490,10 +490,14 @@ $form-focus-background: #fff;
   border-radius: 6px;
   flex-shrink: 0;
   background: var(--hp-line);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 }
 
 .hp-veggie-info {

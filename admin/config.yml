@@ -230,11 +230,13 @@ collections:
         required: false
         hint: 'CSS gradient for the home page thumbnail, e.g. "linear-gradient(135deg,#cf0089,#f5d0e0)"'
 
-      - label: "Thumb Emoji"
-        name: "thumb_emoji"
-        widget: "string"
+      - label: "Thumbnail Image"
+        name: "thumb_image"
+        widget: "image"
         required: false
-        hint: "Optional emoji for the thumbnail (e.g. 🥬)"
+        hint: "Small image shown in the home page veggie list. Upload a square-ish photo. Gradient is used as fallback when no image is set."
+        media_folder: "assets/images/veggie-thumbs"
+        public_folder: "/assets/images/veggie-thumbs"
 
       - label: "Layout"
         name: "layout"

@@ -121,8 +121,8 @@
 
       {% for veggie in in_season_veggies %}
       <a href="{{ veggie.url | relative_url }}" class="hp-veggie-row">
-        <div class="hp-veggie-thumb" {% if veggie.thumb_gradient %}style="background:{{ veggie.thumb_gradient }}"{% endif %}>
-          {% if veggie.thumb_emoji %}{{ veggie.thumb_emoji }}{% endif %}
+        <div class="hp-veggie-thumb" {% if veggie.thumb_gradient and veggie.thumb_image == nil %}style="background:{{ veggie.thumb_gradient }}"{% endif %}>
+          {% if veggie.thumb_image %}<img src="{{ veggie.thumb_image | relative_url }}" alt="{{ veggie.title }}">{% endif %}
         </div>
         <div class="hp-veggie-info">
           <div class="hp-veggie-name">{{ veggie.title }}</div>
