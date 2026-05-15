@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include head.html %}
+
+<body>
+
+    <!-- NAV -->
+    <nav class="hp-nav">
+        <a href="{{ '/' | relative_url }}" class="hp-wordmark">
+            <span class="hp-wordmark-edgies">Edgie's</span>
+            <span class="hp-wordmark-veggies">Veggies</span>
+        </a>
+        <a href="{{ '/veggies/' | relative_url }}" class="hp-nav-link">All
+            veggies →</a>
+    </nav>
+
+    {{ content }}
+
+    <!-- 5. NEWSLETTER -->
+    <section class="hp-newsletter">
+        <div class="hp-newsletter-inner">
+            <h2 class="hp-newsletter-heading">Know what's coming before you
+                arrive.</h2>
+            <p class="hp-newsletter-subtext">Get harvest updates every Friday —
+                what's ready, what's almost gone, and what's just coming in.</p>
+            <form class="js-cm-form hp-newsletter-form"
+                action="https://www.createsend.com/t/subscribeerror?description="
+                method="post"
+                data-id="2BE4EF332AA2E32596E38B640E9056198AB1CE755310223F51B9B7A1A84ECCF0D5273ABBAB8D761069F57EC9F57688E765894B26C821D8708B348E851258F3F4">
+                <input type="email"
+                    class="js-cm-email-input hp-newsletter-input"
+                    name="cm-ydykkhy-ydykkhy" placeholder="your@email.com"
+                    autocomplete="email" required>
+                <button type="submit" class="hp-newsletter-btn">Get
+                    updates</button>
+            </form>
+            <script async
+                src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
+        </div>
+    </section>
+
+    <!-- 6. FOOTER -->
+    <footer class="hp-footer">
+        <div class="hp-footer-wm">EDGIE'S VEGGIES</div>
+        <div class="hp-footer-meta">St. Paul Farmers' Market · Saturdays ·
+            edgiesveggies.com</div>
+    </footer>
