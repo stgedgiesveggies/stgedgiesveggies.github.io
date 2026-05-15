@@ -10,14 +10,15 @@
             <span class="hp-wordmark-edgies">Edgie's</span>
             <span class="hp-wordmark-veggies">Veggies</span>
         </a>
-        <a href="{{ '/veggies/' | relative_url }}" class="hp-nav-link">All
-            veggies →</a>
+        {% unless page.url == '/veggies/' %}
+        <a href="{{ '/veggies/' | relative_url }}" class="hp-nav-link">All veggies →</a>
+        {% endunless %}
     </nav>
 
     {{ content }}
 
     <!-- 5. NEWSLETTER -->
-    <section class="hp-newsletter">
+    {% unless page.hide_newsletter %}<section class="hp-newsletter">
         <div class="hp-newsletter-inner">
             <h2 class="hp-newsletter-heading">Know what's coming before you
                 arrive.</h2>
@@ -37,7 +38,7 @@
             <script async
                 src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
         </div>
-    </section>
+    </section>{% endunless %}
 
     <!-- 6. FOOTER -->
     <footer class="hp-footer">
@@ -45,3 +46,6 @@
         <div class="hp-footer-meta">St. Paul Farmers' Market · Saturdays ·
             edgiesveggies.com</div>
     </footer>
+
+</body>
+</html>
