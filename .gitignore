@@ -10,4 +10,5 @@ assets/js/uikit-slideshow.min.js
 assets/js/uikit-icons.min.js
 assets/images/**/*-750.webp
 assets/images/**/*-1500.webp
+assets/qrcodes/
 .idea

@@ -28,6 +28,7 @@ jobs:
           cache: npm
 
       - run: npm install
+      - run: npm run generate-qrcodes
       - run: npm run process-images
 
       - uses: ruby/setup-ruby@v1

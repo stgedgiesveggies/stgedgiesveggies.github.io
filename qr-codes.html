@@ -1,0 +1,55 @@
+---
+layout: default
+title: QR Codes
+permalink: /qr-codes/
+hide_newsletter: true
+---
+
+<div class="qrp-wrap">
+
+  <h1 class="qrp-heading">QR Codes</h1>
+  <p class="qrp-subtext">Print-ready SVG codes for market stall signs. Click any card to download.</p>
+
+  <h2 class="qrp-section-heading">Subscribe</h2>
+  <div class="qrp-solo">
+    <div class="qrp-card">
+      <a href="{{ '/assets/qrcodes/subscribe.svg' | relative_url }}" download="edgiesveggies-subscribe-qr.svg" class="qrp-download-link">
+        <img src="{{ '/assets/qrcodes/subscribe.svg' | relative_url }}" alt="Subscribe QR code" class="qrp-img">
+        <div class="qrp-card-name">Subscribe</div>
+        <div class="qrp-card-url">edgiesveggies.com/subscribe/</div>
+        <span class="qrp-download-btn">Download SVG</span>
+      </a>
+    </div>
+  </div>
+
+  <h2 class="qrp-section-heading">Veggie Pages</h2>
+  <div class="qrp-grid">
+    {% assign sorted_veggies = site.veggies | sort: 'display_order' %}
+    {% for veggie in sorted_veggies %}
+    <div class="qrp-card">
+      <a href="{{ '/assets/qrcodes/veggies/' | append: veggie.slug | append: '.svg' | relative_url }}" download="{{ 'edgiesveggies-' | append: veggie.slug | append: '-qr.svg' }}" class="qrp-download-link">
+        <img src="{{ '/assets/qrcodes/veggies/' | append: veggie.slug | append: '.svg' | relative_url }}" alt="{{ veggie.title }} QR code" class="qrp-img">
+        <div class="qrp-card-name">{{ veggie.title }}</div>
+        <div class="qrp-card-url">edgiesveggies.com/veggies/{{ veggie.slug }}/</div>
+        <span class="qrp-download-btn">Download SVG</span>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <h2 class="qrp-section-heading">Recipes</h2>
+  <div class="qrp-grid">
+    {% for recipe in site.recipes %}
+    {% assign first_veggie_slug = recipe.veggies | first %}
+    <div class="qrp-card">
+      <a href="{{ '/assets/qrcodes/recipes/' | append: recipe.slug | append: '.svg' | relative_url }}" download="{{ 'edgiesveggies-recipe-' | append: recipe.slug | append: '-qr.svg' }}" class="qrp-download-link">
+        <img src="{{ '/assets/qrcodes/recipes/' | append: recipe.slug | append: '.svg' | relative_url }}" alt="{{ recipe.title }} QR code" class="qrp-img">
+        <div class="qrp-card-name">{{ recipe.title }}</div>
+        <div class="qrp-card-url">edgiesveggies.com/veggies/{{ first_veggie_slug }}/#recipe-{{ recipe.slug }}</div>
+        <span class="qrp-download-btn">Download SVG</span>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
