@@ -1,15 +1,15 @@
-name: Deploy Production
+name: Deploy Staging
 
 on:
   push:
-    branches: [main]
+    branches: [staging]
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: deploy-production
+  group: deploy-staging
   cancel-in-progress: false
 
 jobs:
@@ -26,7 +26,6 @@ jobs:
           cache: npm
 
       - run: npm install
-      - run: npm run generate-qrcodes
       - run: npm run process-images
 
       - uses: ruby/setup-ruby@v1
@@ -34,11 +33,12 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - run: npm run build
+      - run: npm run copy-assets && bundle exec jekyll build --config _config.yml,_config_staging.yml
+        env:
+          JEKYLL_ENV: production
 
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
-          cname: edgiesveggies.com
-          keep_files: true
+          destination_dir: staging

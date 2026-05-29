@@ -1,6 +1,6 @@
 # Edgie's Veggies — Claude Guide
 
-Marketing site for a small-scale market garden in St. Paul, MN. Built with Jekyll + UIKit, deployed to GitHub Pages (production) and Netlify (staging).
+Marketing site for a small-scale market garden in St. Paul, MN. Built with Jekyll + UIKit, deployed to GitHub Pages (both production and staging).
 
 ## Stack
 
@@ -35,16 +35,20 @@ bundle exec jekyll build     # compile site to _site/
 npm run purgecss             # strip unused CSS from built output
 ```
 
-Running `bundle exec jekyll serve` locally skips image processing and purgecss — that's fine for development. The full pipeline runs on CI (GitHub Actions) and Netlify.
+Running `bundle exec jekyll serve` locally skips image processing — that's fine for development. The full pipeline runs on CI (GitHub Actions).
 
 ## Deployment
 
 | Environment | Trigger | URL |
 |---|---|---|
 | Production | Push to `main` → GitHub Actions | edgiesveggies.com |
-| Staging | Push to `staging` → Netlify | Netlify preview URL |
+| Staging | Push to `staging` → GitHub Actions | edgiesveggies.com/staging/ |
 
-Netlify uses `netlify.toml` and runs the full build pipeline including image processing and purgecss.
+Both environments deploy to the `gh-pages` branch via `peaceiris/actions-gh-pages`. Production deploys to the branch root; staging deploys to the `staging/` subdirectory with `baseurl: "/staging"` injected at build time.
+
+Production uses `keep_files: true` so the `staging/` subdir survives production deploys. Tradeoff: deleted production pages won't auto-remove from the branch — not a concern for this stable site.
+
+**Required repo setting:** GitHub Pages must be configured to deploy from the `gh-pages` branch (repo Settings → Pages → Source → Deploy from a branch → `gh-pages` / root).
 
 ## Styling
 
