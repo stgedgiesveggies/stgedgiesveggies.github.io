@@ -22,7 +22,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: "20"
           cache: npm
 
       - run: npm install
@@ -37,7 +37,7 @@ jobs:
         env:
           JEKYLL_ENV: production
 
-      # Drop the production CNAME so staging doesn't claim edgiesveggies.com
+      # Drop the production CNAME so staging doesn't claim edgiesveggies.com test
       - run: rm -f _site/CNAME
 
       - uses: peaceiris/actions-gh-pages@v4
