@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Edgie's Veggies//Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:st-paul-farmers-market@edgiesveggies.com
+DTSTAMP:20260610T172412Z
+DTSTART;TZID=America/Chicago:20260510T090000
+DTEND;TZID=America/Chicago:20260510T130000
+SUMMARY:Edgie's Veggies at St. Paul Farmers' Market
+LOCATION:St. Paul Farmers' Market, 290 5th St. East, St. Paul, MN 55101
+DESCRIPTION:Come find us for fresh salad greens, radishes, and whatever else is looking great in the field this week!
+RRULE:FREQ=WEEKLY;UNTIL=20261031T130000
+END:VEVENT
+END:VCALENDAR

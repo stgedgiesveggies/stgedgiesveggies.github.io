@@ -1,0 +1,297 @@
+backend:
+  name: github
+  repo: jasunde/edgies-veggies
+  branch: staging
+  auth_type: pkce
+  app_id: Ov23libxhfLgXMCAHyQx
+
+media_folder: "assets/images/posts"
+public_folder: "/assets/images/posts"
+
+site_url: "https://stgedgiesveggies.github.io"
+display_url: "https://stgedgiesveggies.github.io"
+logo_url: "/assets/images/lettuce-cropped-web.jpeg"
+
+publish_mode: simple
+
+collections:
+  - name: "posts"
+    label: "Farm Updates"
+    label_singular: "Farm Update"
+    folder: "_posts"
+    create: true
+    slug: "---"
+    preview_path: "///.html"
+    editor:
+      preview: false
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: 'e.g. "Market Update — May 3rd: Salad Mix, Radishes, and Baby Spinach"'
+
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "MMMM D, YYYY"
+        time_format: false
+        default: ""
+
+      - label: "Cover Photo"
+        name: "cover_image"
+        widget: "image"
+        required: false
+        hint: "A photo for the top of the post and social sharing. Upload from your phone or computer."
+        media_library:
+          config:
+            multiple: false
+
+      - label: "Post Content"
+        name: "body"
+        widget: "markdown"
+        buttons:
+          - bold
+          - italic
+          - bulleted-list
+          - numbered-list
+          - link
+        editor_components:
+          - image
+        hint: "Write your update here. Use the toolbar to add bold text, lists, or more photos."
+
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "post"
+
+  - name: "events"
+    label: "Events"
+    label_singular: "Event"
+    folder: "_events"
+    create: true
+    slug: "---"
+    editor:
+      preview: false
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: 'e.g. "Edgie''s Veggies at St. Paul Farmers'' Market"'
+
+      - label: "Start Date & Time"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DDTHH:mm:ss"
+        date_format: "MMMM D, YYYY"
+        time_format: "h:mm A"
+        default: ""
+        hint: "All times are Central Time."
+
+      - label: "End Date & Time"
+        name: "end_date"
+        widget: "datetime"
+        format: "YYYY-MM-DDTHH:mm:ss"
+        date_format: "MMMM D, YYYY"
+        time_format: "h:mm A"
+        hint: "All times are Central Time."
+
+      - label: "Location"
+        name: "location"
+        widget: "string"
+        required: false
+        hint: "Address or venue name."
+
+      - label: "Notes"
+        name: "description"
+        widget: "text"
+        required: false
+        hint: "Optional details shown on the website and included in the calendar event."
+
+      - label: "Recurring Event?"
+        name: "recurring"
+        widget: "boolean"
+        default: false
+
+      - label: "Repeat Frequency"
+        name: "frequency"
+        widget: "select"
+        options:
+          - { label: "Weekly", value: "weekly" }
+          - { label: "Every 2 Weeks", value: "biweekly" }
+          - { label: "Monthly", value: "monthly" }
+        required: false
+        hint: "Only used if Recurring Event is checked."
+
+      - label: "Repeat Until"
+        name: "recurrence_end"
+        widget: "datetime"
+        format: "YYYY-MM-DDTHH:mm:ss"
+        date_format: "MMMM D, YYYY"
+        time_format: "h:mm A"
+        required: false
+        hint: "Leave blank to repeat indefinitely."
+
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "ical"
+
+  - name: "veggies"
+    label: "Veggies"
+    label_singular: "Veggie"
+    folder: "_veggies"
+    create: true
+    slug: ""
+    editor:
+      preview: false
+    fields:
+      - label: "Name"
+        name: "title"
+        widget: "string"
+        hint: 'e.g. "Watermelon Radish"'
+
+      - label: "In Season (show on home page)"
+        name: "in_season"
+        widget: "boolean"
+        default: true
+
+      - label: "Featured (hero on home page)"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Only one veggie should be featured at a time."
+
+      - label: "Display Order"
+        name: "display_order"
+        widget: "number"
+        default: 99
+        hint: "Lower numbers appear first in the list."
+
+      - label: "Price"
+        name: "price"
+        widget: "string"
+        required: false
+        hint: 'e.g. "$3.50/bunch"'
+
+      - label: "Short Note"
+        name: "note"
+        widget: "string"
+        required: false
+        hint: "One line shown in the home page list, e.g. \"Crisp, mild, peppery rings\""
+
+      - label: "Hero Blurb"
+        name: "hero_blurb"
+        widget: "string"
+        required: false
+        hint: "Short description shown in the home page hero (1–2 sentences)."
+
+      - label: "About"
+        name: "blurb"
+        widget: "text"
+        required: false
+        hint: "Longer description shown on the veggie page."
+
+      - label: "Photo"
+        name: "cover_image"
+        widget: "image"
+        required: false
+        hint: "Main photo for the veggie page and home page hero."
+
+      - label: "Flavor"
+        name: "flavor"
+        widget: "string"
+        required: false
+        hint: 'e.g. "Mild, peppery"'
+
+      - label: "Texture"
+        name: "texture"
+        widget: "string"
+        required: false
+        hint: 'e.g. "Crisp, juicy"'
+
+      - label: "Season"
+        name: "season"
+        widget: "string"
+        required: false
+        hint: 'e.g. "Spring & Fall"'
+
+      - label: "Pairs With"
+        name: "pairs_with"
+        widget: "string"
+        required: false
+        hint: 'e.g. "Sesame · Citrus · Miso · Goat cheese"'
+
+      - label: "Thumb Gradient"
+        name: "thumb_gradient"
+        widget: "string"
+        required: false
+        hint: 'CSS gradient for the home page thumbnail, e.g. "linear-gradient(135deg,#cf0089,#f5d0e0)"'
+
+      - label: "Thumbnail Image"
+        name: "thumb_image"
+        widget: "image"
+        required: false
+        hint: "Small image shown in the home page veggie list. Upload a square-ish photo. Gradient is used as fallback when no image is set."
+        media_folder: "assets/images/veggie-thumbs"
+        public_folder: "/assets/images/veggie-thumbs"
+
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "veggie"
+
+  - name: "recipes"
+    label: "Recipes"
+    label_singular: "Recipe"
+    folder: "_recipes"
+    create: true
+    slug: ""
+    editor:
+      preview: false
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: 'e.g. "Shaved Radish Salad with Sesame & Citrus"'
+
+      - label: "Veggies"
+        name: "veggies"
+        widget: "list"
+        hint: "Which veggie pages should this recipe appear on? Enter the slug of each veggie (e.g. watermelon-radish). One per line."
+
+      - label: "Time"
+        name: "time"
+        widget: "string"
+        required: false
+        hint: 'e.g. "10 min" or "30 min + overnight"'
+
+      - label: "Serves"
+        name: "serves"
+        widget: "string"
+        required: false
+        hint: 'e.g. "Serves 2" or "Makes 1 jar"'
+
+      - label: "Difficulty"
+        name: "difficulty"
+        widget: "select"
+        required: false
+        options:
+          - "Easy"
+          - "Medium"
+          - "Hard"
+
+      - label: "Photo"
+        name: "cover_image"
+        widget: "image"
+        required: false
+
+      - label: "Ingredients"
+        name: "ingredients"
+        widget: "list"
+        hint: "One ingredient per line (e.g. \"3 watermelon radishes, thinly sliced\")."
+
+      - label: "Steps"
+        name: "steps"
+        widget: "list"
+        hint: "One step per item."
