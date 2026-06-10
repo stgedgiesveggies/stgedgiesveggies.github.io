@@ -37,6 +37,9 @@ jobs:
         env:
           JEKYLL_ENV: production
 
+      # Drop the production CNAME so staging doesn't claim edgiesveggies.com
+      - run: rm -f _site/CNAME
+
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
