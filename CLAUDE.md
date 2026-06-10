@@ -39,16 +39,20 @@ Running `bundle exec jekyll serve` locally skips image processing — that's fin
 
 ## Deployment
 
-| Environment | Trigger | URL |
-|---|---|---|
-| Production | Push to `main` → GitHub Actions | edgiesveggies.com |
-| Staging | Push to `staging` → GitHub Actions | edgiesveggies.com/staging/ |
+Production and staging are **separate repos owned by separate GitHub accounts**, each deploying its own branch as an independent GitHub Pages site.
 
-Both environments deploy to the `gh-pages` branch via `peaceiris/actions-gh-pages`. Production deploys to the branch root; staging deploys to the `staging/` subdirectory with `baseurl: "/staging"` injected at build time.
+| Environment | Account / Repo | Trigger | URL |
+|---|---|---|---|
+| Production | `edgiesveggies/edgiesveggies.github.io` | Push to `main` → GitHub Actions | edgiesveggies.com |
+| Staging | `stgedgiesveggies/stgedgiesveggies.github.io` | Push to `staging` → GitHub Actions | stgedgiesveggies.github.io |
 
-Production uses `keep_files: true` so the `staging/` subdir survives production deploys. Tradeoff: deleted production pages won't auto-remove from the branch — not a concern for this stable site.
+Each repo's workflow builds the site and publishes to that repo's `gh-pages` branch root via `peaceiris/actions-gh-pages` (`deploy.yml` for production, `deploy-staging.yml` for staging). Both workflow files live in the shared codebase; they trigger on different branches, so each repo only ever runs the workflow for its branch.
 
-**Required repo setting:** GitHub Pages must be configured to deploy from the `gh-pages` branch (repo Settings → Pages → Source → Deploy from a branch → `gh-pages` / root).
+Staging builds with `_config_staging.yml` layered on top of `_config.yml` (`JEKYLL_ENV=production`), which overrides `url`/`baseurl` and sets the CMS branch. Production deploys with `cname: edgiesveggies.com`.
+
+Local git remotes: `origin` → production repo, `staging` → staging repo.
+
+**Required repo setting (each repo):** GitHub Pages must be configured to deploy from the `gh-pages` branch (repo Settings → Pages → Source → Deploy from a branch → `gh-pages` / root).
 
 ## Styling
 
