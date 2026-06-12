@@ -1,9 +1,7 @@
 backend:
   name: github
-  repo: jasunde/edgies-veggies
+  repo: stgedgiesveggies/edgies-veggies
   branch: staging
-  auth_type: pkce
-  app_id: Ov23libxhfLgXMCAHyQx
 
 media_folder: "assets/images/posts"
 public_folder: "/assets/images/posts"
