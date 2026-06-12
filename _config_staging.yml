@@ -1,4 +1,4 @@
 baseurl: ""
 url: "https://stgedgiesveggies.github.io"
 cms_branch: staging
-cms_oauth_app_id: Ov23libxhfLgXMCAHyQx
+cms_repo: stgedgiesveggies/edgies-veggies

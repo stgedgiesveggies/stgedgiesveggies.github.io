@@ -2,10 +2,8 @@
 ---
 backend:
   name: github
-  repo: jasunde/edgies-veggies
+  repo: {{ site.cms_repo }}
   branch: {{ site.cms_branch }}
-  auth_type: pkce
-  app_id: {{ site.cms_oauth_app_id }}
 
 media_folder: "assets/images/posts"
 public_folder: "/assets/images/posts"
