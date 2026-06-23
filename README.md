@@ -10,19 +10,17 @@ Marketing site for a small-scale market garden in St. Paul, MN. Built with Jekyl
 | Runtime | Ruby 3.2.2 |
 | CSS framework | UIKit 3 (via npm) |
 | Templating | Liquid |
-| Image processing | sharp (Node.js) |
+| Media hosting & processing | Cloudinary (on-the-fly transforms) |
 | CSS purging | PurgeCSS |
-| CMS | Decap CMS (`/admin/`) |
+| CMS | Sveltia CMS (`/admin/`) |
 | Newsletter | Campaign Monitor (CreateSend) |
 | Hosting | GitHub Pages + Netlify (staging) |
-| Large assets | Git LFS |
 
 ## Prerequisites
 
 - Ruby 3.2.2 (see `.ruby-version` — use RVM or rbenv)
 - Bundler (`gem install bundler`)
 - Node.js 20+ and npm
-- Git LFS (`brew install git-lfs && git lfs install`)
 
 ## Local Setup
 
@@ -41,19 +39,20 @@ bundle exec jekyll serve
 
 ```
 
-Jekyll watches for file changes and rebuilds automatically. Config changes (`_config.yml`) require a server restart. The dev server skips image processing and PurgeCSS — use the full build to verify those steps.
+Jekyll watches for file changes and rebuilds automatically. Config changes (`_config.yml`) require a server restart. The dev server skips PurgeCSS — use the full build to verify that step.
 
 ## Build
 
 The full build pipeline (matches CI and Netlify):
 
 ```bash
-npm run process-images   # generate responsive WebP variants
 npm run copy-assets      # copy UIKit JS from node_modules to assets/js/
 bundle exec jekyll build # compile site to _site/
 npm run purgecss         # strip unused CSS
 # Output goes to _site/ (gitignored)
 ```
+
+Photographic media is served from Cloudinary (URL transforms handle resizing/format), so there is no local image-processing step.
 
 ## Project Layout
 
@@ -75,14 +74,13 @@ _sass/
 
 assets/
   css/main.scss   # Entry point — custom colors, fonts, utility classes
-  images/
-    home-slides/  # Slideshow images (auto-discovered by home.liquid)
   js/             # UIKit JS (minified + unminified copies)
+                  # (photographic images are on Cloudinary, not in the repo)
 ```
 
 ## Key Patterns
 
-**Slideshow images** — drop any image into `assets/images/home-slides/` and it will appear in the homepage carousel automatically. The `home.liquid` template discovers them via `site.static_files` at build time.
+**Media on Cloudinary** — all photographic content lives in Cloudinary (`edgies-veggies/` folder), not the repo. Sveltia CMS uploads go straight to Cloudinary and store the full delivery URL in frontmatter; layouts render those URLs directly. Resize/format via URL transforms (`w_750`, `f_auto`, `q_auto`).
 
 **Custom styles** — `assets/css/main.scss` is the right place for site-specific overrides. UIKit component overrides go in `_sass/theme/` to mirror the upstream `_sass/components/` structure.
 

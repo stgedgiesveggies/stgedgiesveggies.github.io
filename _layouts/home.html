@@ -21,14 +21,10 @@
       {% if featured_veggie and featured_veggie.cover_image %}
       <img src="{{ featured_veggie.cover_image | relative_url }}" alt="" fetchpriority="high">
       {% else %}
-      <picture>
-        <source type="image/webp"
-          srcset="{{ '/assets/images/home-slides/radishes-750.webp' | relative_url }} 750w,
-                  {{ '/assets/images/home-slides/radishes-1500.webp' | relative_url }} 1500w"
-          sizes="100vw">
-        <img src="{{ '/assets/images/home-slides/radishes.jpeg' | relative_url }}"
-          alt="" fetchpriority="high">
-      </picture>
+      <img src="https://res.cloudinary.com/dlcjjf2wj/image/upload/f_auto,q_auto,w_1500/edgies-veggies/home-slides/radishes"
+        srcset="https://res.cloudinary.com/dlcjjf2wj/image/upload/f_auto,q_auto,w_750/edgies-veggies/home-slides/radishes 750w,
+                https://res.cloudinary.com/dlcjjf2wj/image/upload/f_auto,q_auto,w_1500/edgies-veggies/home-slides/radishes 1500w"
+        sizes="100vw" alt="" fetchpriority="high">
       {% endif %}
     </div>
 

@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Marketing site for a small-scale market garden in St. Paul, MN.",
   "scripts": {
-    "process-images": "node scripts/process-images.js",
     "generate-qrcodes": "node scripts/generate-qrcodes.js",
     "copy-assets": "cp node_modules/uikit/dist/js/uikit.min.js assets/js/ && cp node_modules/uikit/dist/js/uikit-icons.min.js assets/js/",
     "build": "npm run copy-assets && bundle exec jekyll build",
@@ -12,7 +11,9 @@
   "dependencies": {
     "gray-matter": "^4.0.3",
     "qrcode": "^1.5.4",
-    "sharp": "^0.34.5",
     "uikit": "3.16.14"
+  },
+  "devDependencies": {
+    "cloudinary": "^2.5.1"
   }
 }
