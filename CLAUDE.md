@@ -9,11 +9,10 @@ Marketing site for a small-scale market garden in St. Paul, MN. Built with Jekyl
 | Site generator | Jekyll 4.3.2, Ruby 3.2.2 |
 | CSS framework | UIKit 3 (via npm) |
 | Templating | Liquid |
-| Image processing | sharp (Node.js) |
+| Media hosting & processing | Cloudinary (on-the-fly `f_auto,q_auto,w_*` transforms) |
 | CSS purging | PurgeCSS |
-| CMS | Decap CMS (`/admin/`) |
+| CMS | Sveltia CMS (`/admin/`) |
 | Newsletter | Campaign Monitor (CreateSend) |
-| Large assets | Git LFS |
 
 ## Local Development
 
@@ -28,14 +27,13 @@ Use the local server to verify UI changes before reporting them complete. Config
 The full production build runs these steps in order:
 
 ```bash
-npm install                  # install UIKit, sharp, purgecss
-npm run process-images       # generate responsive WebP variants via sharp
+npm install                  # install UIKit, purgecss
 npm run copy-assets          # copy UIKit JS from node_modules to assets/js/
 bundle exec jekyll build     # compile site to _site/
 npm run purgecss             # strip unused CSS from built output
 ```
 
-Running `bundle exec jekyll serve` locally skips image processing — that's fine for development. The full pipeline runs on CI (GitHub Actions).
+There is no longer a local image-processing step — all photographic media is served from Cloudinary, which handles resizing/format negotiation via URL transforms. The full pipeline runs on CI (GitHub Actions).
 
 ## Deployment
 
@@ -69,11 +67,11 @@ Local git remotes: `origin` → production repo, `staging` → staging repo.
 
 ## Key Patterns
 
-**Slideshow images** — drop any image into `assets/images/home-slides/` and it auto-appears in the homepage carousel. `home.liquid` discovers them via `site.static_files` at build time.
+**Media on Cloudinary** — all photographic content (veggie/recipe/post images, the homepage hero) lives in Cloudinary under the `edgies-veggies/` folder, not in the repo. Sveltia CMS is configured with the Cloudinary media library (`admin/config.yml`), so client uploads go straight to Cloudinary and the **full delivery URL** is stored in frontmatter (e.g. `cover_image: https://res.cloudinary.com/dlcjjf2wj/image/upload/f_auto,q_auto/edgies-veggies/...`). Jekyll's `relative_url`/`absolute_url` filters pass absolute URLs through untouched, so layouts render these directly. Resize/format is done with URL transforms (`w_750`, `f_auto`, `q_auto`) — no build step. One-time migration scripts live in `scripts/upload-to-cloudinary.js` and `scripts/migrate-frontmatter.js`.
 
-**Blog posts** — managed by the client via Decap CMS at `/admin/`. Posts live in `_posts/` as Markdown with frontmatter fields: `title`, `date`, `cover_image` (optional), `layout: post`. Post authoring is the client's responsibility, not the developer's.
+**Homepage hero** — uses the featured veggie's `cover_image`; the fallback is a Cloudinary-served `radishes` image (`_layouts/home.html`). There is no longer an auto-discovered carousel.
 
-**Image processing** — `scripts/process-images.js` uses sharp to generate responsive WebP variants. Run `npm run process-images` after adding new source images.
+**Blog posts** — managed by the client via Sveltia CMS at `/admin/`. Posts live in `_posts/` as Markdown with frontmatter fields: `title`, `date`, `cover_image` (optional, Cloudinary URL), `layout: post`. Post authoring is the client's responsibility, not the developer's.
 
 ## Project Layout
 
@@ -90,16 +88,16 @@ _includes/
 
 assets/
   css/main.scss     # Style entry point
-  images/
-    home-slides/    # Carousel images (auto-discovered)
-    posts/          # CMS-uploaded post images
   js/               # UIKit JS (copied from node_modules at build time)
+                    # (photographic images are on Cloudinary, not in the repo)
 
 admin/
-  config.yml        # Decap CMS configuration
+  config.yml        # Sveltia CMS configuration (Cloudinary media library)
   index.html        # CMS entry point
 
 scripts/
-  process-images.js # Sharp-based image pipeline
+  upload-to-cloudinary.js  # One-time: push local images to Cloudinary
+  migrate-frontmatter.js   # One-time: rewrite image paths to Cloudinary URLs
+  generate-qrcodes.js      # QR code generation
 ```
 

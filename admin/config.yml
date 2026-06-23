@@ -3,12 +3,16 @@ backend:
   repo: stgedgiesveggies/edgies-veggies
   branch: staging
 
-media_folder: "assets/images/posts"
-public_folder: "/assets/images/posts"
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: dlcjjf2wj
+    api_key: 366728534571236
+  output_filename_only: false
 
 site_url: "https://stgedgiesveggies.github.io"
 display_url: "https://stgedgiesveggies.github.io"
-logo_url: "/assets/images/lettuce-cropped-web.jpeg"
+logo_url: "https://res.cloudinary.com/dlcjjf2wj/image/upload/f_auto,q_auto,w_600/edgies-veggies/lettuce-cropped-web"
 
 publish_mode: simple
 
@@ -176,7 +180,7 @@ collections:
         name: "note"
         widget: "string"
         required: false
-        hint: "One line shown in the home page list, e.g. \"Crisp, mild, peppery rings\""
+        hint: 'One line shown in the home page list, e.g. "Crisp, mild, peppery rings"'
 
       - label: "Hero Blurb"
         name: "hero_blurb"
@@ -231,8 +235,6 @@ collections:
         widget: "image"
         required: false
         hint: "Small image shown in the home page veggie list. Upload a square-ish photo. Gradient is used as fallback when no image is set."
-        media_folder: "assets/images/veggie-thumbs"
-        public_folder: "/assets/images/veggie-thumbs"
 
       - label: "Layout"
         name: "layout"
@@ -287,7 +289,7 @@ collections:
       - label: "Ingredients"
         name: "ingredients"
         widget: "list"
-        hint: "One ingredient per line (e.g. \"3 watermelon radishes, thinly sliced\")."
+        hint: 'One ingredient per line (e.g. "3 watermelon radishes, thinly sliced").'
 
       - label: "Steps"
         name: "steps"
